@@ -1,0 +1,106 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+\addtolength{\parskip}{\baselineskip}
+
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{Sujet TD:  Fibonacci, matrice, diagonalisation}
+\author{Dominique Michelucci, Universit\'e de Dijon}
+\date{}
+\maketitle
+
+La suite de Fibonacci est d\'efinie par~:
+$$F_0=0, F_1=1, n > 1 \Rightarrow F_n=F_{n-2}+F_{n-1}$$
+
+On en d\'eduit~:
+\begin{eqnarray*}
+(F_n, F_{n-1}) &=& (F_{n-1}, F_{n-2}) M \mbox{   avec :  } M=\left(\begin{array}{cc}1 & 1 \\ 1 & 0 \end{array}\right) \\
+&=& (F(n-2), F(n-3)) M^{2} \\ 
+&=& \ldots \\
+&=& (F_1, F_0) M^{n-1}  = (1, 0) M^{n-1}
+\end{eqnarray*}
+
+La m\'ethode d'exponentiation rapide est utilis\'ee pour calculer $M^{n-1}$ en $O(\log_2 n)$ produits de matrices carr\'ees $2 \times 2$.
+
+On peut remarquer que $M$ est diagonalisable~:
+
+Ses valeurs propres sont racines de 
+$$|M- \lambda I_{2,2}| =\left| \begin{array}{cc} 1-\lambda & 1 \\ 1 & -\lambda \end{array}\right|= \lambda^2-\lambda-1=(\lambda -\phi)(\lambda -\phi')=0$$
+o\`u~:
+$$\phi= \frac{1+\sqrt{5}}{2}=1.618..., \quad \phi'=\frac{1+\sqrt{5}}{2}=-0.618...$$
+Ses vecteurs propres sont tels que 
+$(a, b)M= (a+b, a) = \lambda \times (a, b)$. Donc $(\phi, 1)$, et $(\phi', 1)$ sont deux vecteurs propres de $M$, associ\'es \`a $\phi$ et $\phi'$~:
+
+ 
+\begin{eqnarray*}
+\left( \begin{array}{cc} \phi & 1 \\ \phi' & 1\end{array}\right) \left(\begin{array}{cc}1 & 1 \\ 1 & 0 \end{array}\right) &=& \left( \begin{array}{cc} \phi+1 & \phi \\ \phi'+1 & \phi' \end{array}\right) \\
+&=& \left( \begin{array}{cc}  \phi^2 & \phi \\   \phi'^2 & \phi'  \end{array}\right) \\
+&=& \left( \begin{array}{cc}  \phi & 0 \\ 0 & \phi'\end{array}\right) \left( \begin{array}{cc} \phi & 1 \\ \phi' & 1\end{array}\right) 
+\end{eqnarray*}
+
+L'inverse de $R=\left( \begin{array}{cc} \phi & 1 \\ \phi' & 1\end{array}\right)$ est $R^{-1}=\frac{1}{\phi-\phi'}\times \left( \begin{array}{cc} 1 & -1 \\ -\phi' & \phi\end{array}\right)$. Or $\phi-\phi'=\sqrt{5}$. 
+
+De $RM= \mbox{diag}(\phi, \phi')R$, on d\'eduit~: $M=R^{-1} \mbox{diag}(\phi, \phi')R$. Notons $D=\mbox{diag}(\phi, \phi')$.
+
+Donc $M^k=(R^{-1}DR)^k=\ldots = R^{-1} D^k R$. Deux cons\'equences~:
+
+1. Ceci justifie que $F_k= a\phi^k + b \phi'^k$, pour certaines constantes $a$ et $b$, que l'on peut calculer en consid\'erant $F_0=a\phi^0+ b\phi'^0$ et
+$F_1=a\phi^1+ b\phi'^1$. V\'erifier~: $a=\frac{\sqrt{5}}{5}$, et $b= -a$.
+
+2. Il existe donc une m\'ethode plus rapide (du moins pour des matrices plus grandes que $M$ !) pour calculer $M^k$~: quand $M$ est diagonalisable,
+soit $D$ la matrice diagonale des valeurs propres, 
+soit $R$ la (en fait, une)  matrice des vecteurs propres~; comme $M=R^{-1}DR$, pour calculer $M^k=R^{-1}D^kR$.
+Si $D=\mbox{diag}(\lambda_1, \ldots \lambda_n)$, alors $D^k=\mbox{diag}(\lambda_1^k, \ldots \lambda_n^k)$, en $O(n)$ au lieu de $O(n^3)$. 
+Le calcul de $D$ et $R$ (par la m\'ethode QR) et de $R^{-1}$ est en $O(n^3)$. On passe donc de $O(n^3\log k)$ \`a $O(n^3)$ ($k$ est l'exposant et $n\times n$ la taille de la matrice).
+
+Ceci se g\'en\'eralise \`a des suites plus compliqu\'ees, par exemple le nombre de noeuds de l'arbre de Fibonacci (cet arbre est l'arbre des appels r\'ecursifs dans le calcul r\'ecursif na\"if de $F_k$)~: $T_0$ a comme racine 0 et
+n'a pas de fils, $T_1$ a comme racine 1 et n'a pas de fils, et 
+pour $k>1$, $T_k$ a comme racine $k$ et a deux fils~: $T_{k-2}$ et $T_{k-1}$. Le nombre de noeuds de $T_k$ et $t_k$ et v\'erifie~: $t_0=1$, $t_1=1$,
+et pour $k>1$, $t_k=t_{k-2}+t_{k-1}+1$. Trouvez l'\'equivalent de la matrice $M$ (elle est 3 par 3), ses valeurs propres (ce sont 1, $\phi$ et $\phi'$).
+En d\'eduire qu'il existe trois constantes $a, b, c$ telles que $t_k= a \phi^k + b \phi'^k + c 1^k$~; calculez les en consid\'erant $k=0, 1, 2$.
+Ensuite prouvez que la formule est exacte par r\'ecurrence.
+
+\section{Diagonalisation des matrices de rotation 2D}
+Les matrices de rotation 2D autour de l'origine sont de la forme (le point et un vecteur colonne):
+$$R=\left( \begin{array} {ll}
+c & -s \\
+s & c \\
+\end{array}\right), \quad c=\cos \theta, s=\sin \theta$$
+Les valeurs propres sont $e^{i\theta}= c + i s$ et  $e^{-i\theta}=c - i s$, avec $i^2= -1$.
+Il y a beaucoup de vecteurs propres, et j'ai choisi ceux ci-dessous pour leur sym\'etrie~:
+$$R=VDV^{-1}, V=\left( \begin{array}{ll}
+i/\sqrt{2} & 1/\sqrt{2} \\
+-1/\sqrt{2} & -i/\sqrt{2} \\
+\end{array}\right),
+D=\left( \begin{array}{ll}
+c-is & 0 \\
+0 & c+is \\
+\end{array}\right),
+V^{-1}=\left( \begin{array}{ll}
+-i/\sqrt{2} & -1/\sqrt{2} \\
+1/\sqrt{2} & i\sqrt{2}
+\end{array}\right)$$
+
+V\'erifiez 
+que 
+$RV=VD$, 
+et que 
+$V^{-1}V=I$. Bien s\^ur, les valeurs propres dans $D$ peuvent être permut\'ees.
+\end{document}
+

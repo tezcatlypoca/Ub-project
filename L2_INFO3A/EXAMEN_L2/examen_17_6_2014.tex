@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+%\usepackage{amss}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\newcommand\comment{}
+ 
+\def\N{\mathbb N}
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\begin{document}
+\title{EXAMEN D'ALGORITHMIQUE, I31A}
+\date{}%{12-12-2013}
+%\maketitle
+{\bf\large EXAMEN D'ALGORITHMIQUE, I31A, 17-06-2014, L2} 
+
+\medskip
+
+{\it Tous vos documents sont autorisés, mais pas la copie de votre voisin.
+N'écrivez aucun programme.
+Ecrivez lisiblement.
+Répondez aux questions dans l'ordre, en indiquant le numéro de chaque question.
+Téléphone, calculette, tablette, ordinateur, lunettes Google sont interdits. 
+Indication de longueur~: n'utilisez pas d'intercalaire.
+Barème~: les 3 dernières questions sont notées sur 3 points chacunes, les autres sur 1 point chacune.
+}
+
+\newcommand\q[1]{\smallskip \noindent {\bf #1.}}
+\medskip 
+
+\q{1}  {D\'eroulez l'algorithme d'Euclide pour calculer le PGCD de 165 et 75}.
+~
+
+\q{2} {D\'eroulez l'algorithme d'Euclide \'etendu (ou Bézout) pour $a=165$ et $b=75$ en remplissant un tableau comme ci-dessous. {\it Dans la dernière ligne, $b$ est nul et $a$ est le PGCD cherché}.
+L'algorithme vu en cours calcule $g$ le PGCD de $a$ et $b$, ainsi que $u$ et $v$. $u$ et $v$ sont tels que $au+bv=g=PGCD(a,b)$; on note $r=a \mod b$, et $q=\lfloor \frac{a}{b}\rfloor$
+le quotient de $a$ par $b$.   Il n'y a qu'une seule réponse correcte.
+{\large
+$$
+\begin{array}{|c|c|c|c|c|c|c|}
+\hline
+a\quad & b \quad& r \quad& q \quad& g \quad& u \quad& v \quad\\
+\hline
+\end{array}$$
+}
+
+\q{3} (suite) Soient $a\in \N$ et $b\in\N$ deux entiers naturels donnés. Soit une solution $(u, v)$, donnée elle aussi, 
+du problème de Bézout: donc
+$au + bv =\mbox{PGCD}(a, b)$. Mais cette solution $(u, v)$ n'est pas minimale~: 
+il existe une autre solution $(u', v')$ telle que $au'+bv'=\mbox{PGCD}(a,b)$ et le vecteur $(u',v')$ est plus court que $(u,v)$. Proposez un algorithme
+pour trouver une solution plus petite que $(u, v)$, s'il en existe. 
+Attention~: vous devez utiliser $(u, v)$, pas seulement $a, b$.
+
+\q{4} Vous avez 3 pièces d'or, une balance à deux plateaux, et vous savez qu'exactement une des pièces sur les trois est fausse~: elle est plus légère. Expliquez comment vous détectez la pièce fausse en une seule pesée.
+
+\q{5} (suite)  Vous avez  $3^k$  pièces d'or, une balance à deux plateaux, et vous savez qu'exactement une des pièces  est fausse~: elle est plus légère. Expliquez comment vous détectez la pièce fausse en un minimum de pesées.
+
+{
+\q{6} {Quel est le nom de la méthode utilisée pour résoudre "le problème des reines" et "le compte est bon"~?}
+
+
+\q{7} {Quel est l'ordre de grandeur du nombre minimum de 
+produits matriciels nécessaires pour calculer $M^n$, où $M$ est une matrice carrée, et $n$ un entier naturel~?}
+
+\q{8} {Proposez une m\'ethode rapide pour calculer $K_n$, o\`u $K_0, K_1$ sont donn\'es,
+et $K_{n}= a_1 K_{n-1} + a_2 K_{n-2} + c$ quand $n>1$, avec des valeurs connues pour  $a_1, a_2, c$. Indication: utilisez une matrice de taille $3\times 3$ et l'algorithme de puissance rapide.}
+
+
+\q{9} Les paysans russes réduisaient la multiplication  de deux entiers naturels à des sommes (dont des doublements), et des divisions par deux~: l'un des multiplicandes est implicitement décomposé en base 2. Donnez les formules récursives correspondantes pour $a\times b$~; vous supposerez que c'est $a$ qui est décomposé en base 2. 
+
+
+\q{10} Définissez le problème SAT en 3 lignes au plus. Un algorithme rapide pour le résoudre est-il connu~?
+
+
+\q{11} Un compilateur peut-il décider si deux fonctions sont équivalentes (deux fonctions sont équivalentes si elles donnent les mêmes résultats pour tous les arguments possibles)~?
+
+
+\q{12} Soit l'équation $f(x)=x^2-4=0$. Définissez la fonction de Newton $N(x)$ associée. Quel 
+sera le point fixe de $N$ en partant de $x_0=4$~? Pour $x\in [1/2, 5]$, dessinez la courbe $(x, y=N(x))$, la droite d'équation $x=y$,  et les premières étapes de la méthode de Newton, en partant de $x_0=4$, et de $x_0=1$. 
+Pour cela vous calculerez (sans calculette) les valeurs numériques de $N(0), N(1), N(2), N(3), N(4), N(5)$.
+
+
+
+\q{13} Un arbre binaire, représentant une expression arithmétique, est donné~; ses feuilles portent des nombres ou des noms 
+de variables~; ses noeuds portent des noms d'opérations~: $+, \times$.  Décrivez un algorithme pour convertir 
+cet arbre en une expression postfixe. Rappel~: $1, 2, 3, \times, +$ est une  expression postfixe, dont l'évaluation donne $1 + 2\times 3 =7$.
+
+\q{14} (suite). Une expression postfixe est représentée par une liste d'éléments; chaque élément est soit un nombre, soit un nom de variable, soit un nom d'opération ($+, \times$). Décrivez un algorithme pour convertir cette expression postfixe en arbre binaire. Indication~: vous pouvez vous inspirer de l'algorithme d'évaluation d'une expression postfixe. 
+
+\end{document}
+
+
+\q{15} Les arcs d'un graphe orienté sont étiquetés par des probabilités de passage. Pour chaque sommet, la somme des probabilités des arcs 
+qui en sortent vaut un.  Ce graphe est représenté par une matrice $P$, et $P_{l,c}$ (ou \verb@ P[l][c]@) est la probabilité de l'arc de $l$ vers $c$ quand il existe. $P_{l,c}$ est la probabilité d'être en $c$ à l'instant $t+1$ quand on se trouve en $l$  à l'instant $t$. Que vaut  $P_{l,c}$ quand il n'y a pas d'arc de $l$ vers $c$~? Indication~: considérez la question suivante.
+
+
+\q{16} (suite)
+$Q_{l,c}$ est la probabilité d'aller en {\it exactement} 2 arcs de $l$ à $c$, dans le graphe précédent, de matrice $P$. Exprimez $Q_{l,c}$ en fonction
+de  $P$. Vous appelerez $n$ le nombre de sommets du graphe, que vous numéroterez de $1$ à $n$.
+
+
+
+
+\q{17} (suite) Proposez un algorithme pour calculer le chemin le plus probable entre deux sommets donnés du graphe.
+
+
+
+\q{18} Les arcs $l\rightarrow c$ d'un graphe orienté sont étiquetés par des probabilités de mourir lorsqu'on emprunte cet arc. 
+Ce type de graphe est utilisé pour chercher les chemins les plus sûrs.
+$M_{l,c}$ est la probabilité de mourir de l'arc $l\rightarrow c$ quand il existe. Que vaut $M_{l,c}$ quand l'arc n'existe pas~?
+Indication~: considérez la question suivante.
+
+\q{19}  (suite) Quelle est la probabilité de mourir lorsqu'on suit le chemin $a, b, c$ dans le graphe précédent~? Indication~: votre réponse doit dépendre de $M_{a,b}$ et 
+$M_{b,c}$.
+
+
+\q{20} (suite)  Proposez un algorithme pour calculer le chemin le plus sûr entre deux sommets donnés du graphe.  Le graphe est donné par sa matrice $M$.
+
+
+
+
+
+
+\end{document}

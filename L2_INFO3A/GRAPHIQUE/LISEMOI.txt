@@ -1,0 +1,5 @@
+javac ne detecte pas la recursion terminale (contraierement à Scala...)
+
+pour que ca marche:
+java -Xss90m Convexe 1000000
+

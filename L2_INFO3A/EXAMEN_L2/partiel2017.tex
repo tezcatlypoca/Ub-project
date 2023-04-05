@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2mm}
+
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{PARTIEL 2017 INFO 31}
+\date{24 octobre 2017}
+\maketitle
+{\bf Répondez dans l'ordre aux questions. Soyez concis et lisible.}
+
+%Question 1. Citer deux problèmes indécidables en informatique.
+Question 1. Quel problème a été résolu en cours par recherche arborescente ({\it  backtrack})~?
+
+
+Question 2. Un programme est en $O(n^3)$, avec $n$ la taille des données. Quand la taille des données est multipliée par 10, par combien est multiplié le temps de calcul~?
+
+Question 3. Un algorithme optimal de tri ordonne $n$ éléments, en les comparant. Combien fait-il de comparaisons~? Utilisez la notation $O$. 
+
+Question 4. Citer deux algorithmes de tri qui trient des entiers sans les comparer.
+
+%Question 5. En détaillant chaque phase, trier avec la méthode du tri par base (radix sort) les entiers~: 321, 331, 132, 123, 113, 231, 233, 212.
+
+% Question 5. Citer 4 structures de données (autres que les tableaux).
+
+Question 5. Résoudre $n^x=7^{\log_2(n)}$. L'inconnue est $x$.
+
+Question 6. Donnez un algorithme dont le temps de calcul $T(n)$ pour $n$ données
+est solution de l'équation~: $T(1)=1, T(n)=2T(n/2)+n$.
+
+Question 7. Quelle est la solution de l'équation~: $T(1)=1, T(n)=2T(n/2)+n$~? Utilisez la notation $O$.
+
+Question 8. Citer deux problèmes résolus par programmation dynamique.
+
+Question 9. Calculer le plus grand diviseur commun $g$ et les coefficients de Bezout $u$ et $v$ des deux entiers 70 et 49, c'est à dire
+$70 u + 49v = g$. Utilisez une table avec les colonnes $a$, $b$, $r= a \mbox{ mod } b$, $q=a \div b$, $g$, $u$, $v$.
+
+Question 10. Donnez d'autres coefficients de Bezout pour le problème précédent. Vous les exprimerez en fonction d'un entier relatif $t$.
+
+%% Question 11. Même question que 9, mais utilisez des matrices de taille 2 par 2.
+
+% Question 12. Quelle est la complexité de l'addition de deux matrices carrées de taille $n$ par $n$~? 
+
+
+% Question 13. Quelle est la complexité (le nombre de multiplications de deux nombres) de l'algorithme évident de multiplication  de deux matrices carrées de taille $n$ par $n$~? $(AB)_{lc}=\sum_{k=1}^n A_{lk}B_{kc}$. 
+
+
+% Question 14. Karatsuba a réduit le produit de deux nombres entiers de $n$ chiffres à trois produits de nombres de $n/2$ chiffres.  D'où une complexité~: $T(1)=1, T(n)=3 T(n/2) + n$. Résolvez~: $T(1)=1, T(n)=3 T(n/2)$.  Vous devez obtenir $T(n)=O(n^{??})$.
+
+
+
+
+%	Question  15. Strassen a trouver une méthode de multiplication de deux matrices varrées de taille $n$ par $n$ qui nécessite
+%	7 (et non 8) multiplications de matrices carrées de taille $n/2$ par $n/2$. Le temps de l'algorithme est donc
+%	$T(1)=1, T(n)=7T(n/2)+n^2$. Le $n^2$ est dû au temps des additions et des soustractions de matrices. Résolvez, plus simplement~:
+%	$T(1)=1, T(n)=7T(n/2)$. Vous devez obtenir $T(n)=O(n^?)$. A titre indicatif~: $\log_2(7)=ln(7)/ln(2)= 2.8073549$. 
+
+\end{document}
+
+

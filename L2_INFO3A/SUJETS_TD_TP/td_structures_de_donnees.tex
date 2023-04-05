@@ -1,0 +1,48 @@
+
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\addtolength{\parskip}{\baselineskip}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{TD. Structures de donn\'ees}
+\author{Dominique Michelucci, Universit\'e de Dijon}
+\maketitle
+
+1. Programmer en Java la gestion d'une pile~: cr\'eer, empiler, d\'epiler, sommet. La pile est repr\'esent\'ee par un tableau. La taille du tableau sera multipli\'ee par 1.5 si n\'ecessaire.
+
+2. Programmer en Java la gestion d'une pile~: cr\'eer, empiler, d\'epiler, sommet. La pile est repr\'esent\'ee par une liste.
+
+3. Programmer en Java la gestion d'une file~: cr\'eer, ins\'erer, premier, supprimer. La file
+est repr\'esent\'ee par un tableau. G\'erer l'agrandissement  quand c'est n\'ec\'essaire.
+
+4. Programmer en Java la gestion d'une file~: cr\'eer, ins\'erer, premier, supprimer. La file
+est repr\'esent\'ee par un couple de 2 listes, comme cela a \'et\'e expliqu\'e en cours.
+Il faudra utiliser le retournement d'une liste en temps lin\'eaire.
+
+5. Ecrire en Java la gestion d'un tas, repr\'esent\'e par un tableau~: cr\'eer, ins\'erer, minimum, supprimer (le minimum), modifier une valeur.
+Les objets ins\'er\'es ont un num\'ero, de 0 \`a  $N-1$.
+Il faut g\'erer une table $T[i]$ donnant l'indice, dans le tableau repr\'esentant le tas, de l'objet num\'ero $i$.
+Vous programmerez ceci en TP, et vous l'utiliserez pour programmer la m\'ethode de Dijkstra. 
+
+6. Ecrire en Java la gestion d'une table de hachage: cr\'eer, ins\'erer, retrouver, supprimer. La table sera  implant\'ee par un tableau de listes.
+Vous supposerez que les cl\'es sont des cha\^ines de caract\`eres (String).
+Rappel~: la m\'ethode String.hashCode() retourne une cl\'e de hachage.
+Il faut pouvoir agrandir la table si n\'ec\'essaire.
+
+\end{document}
+

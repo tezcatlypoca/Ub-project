@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb,version}
+%%\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+%%\newcommand\comment#1{}
+
+%%\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\date{}
+\title{TP : Plus longue s\'equence croissante}
+%\author{D. Michelucci, E. Gavignet, L. Druoton, N.  Gastineau, Universit\'e de Dijon}
+\maketitle
+
+\begin{verbatim}
+calcul commence
+E =61  44  15  28  31  20  57  4   10  28
+LT=1   1   1   2   3   2   4   1   2   3
+n=10; plus longue sequence de longueur 4 :
+E[6]=57;    E[4]=31;    E[3]=28;    E[2]=15; 
+calcul a termine
+quick commence
+E =61  44  15  28  31  20  57  4   10  28
+LT=1   1   1   2   3   2   4   1   2   3
+V =-999 4   10  28  57  -999   -999   -999   -999   -999
+n=10; plus longue sequence de longueur 4 :
+E[6]=57;    E[4]=31;    E[3]=28;    E[2]=15; 
+quick a termine
+oui, les 2 methodes rendent le meme resultat avec n=10
+********************************************************************************************
+calcul commence
+E =88  7  40  47  54  109 16  50  61 15 135 34 65 78 110 70 91 77 35 51
+LT=1   1  2   3   4   5   2   4   5  2  6   3  6  7  8   7  8  8  4  5
+n=20; plus longue sequence de longueur 8 :
+E[17]=77;   E[15]=70;   E[12]=65;   E[8]=61;    E[7]=50;    E[3]=47;    E[2]=40;    E[1]=7; 
+calcul a termine
+quick commence
+E =88  7 40 47 54 109 16 50 61 15 135 34 65 78 110 70 91 77 35 51
+LT=1   1  2  3  4   5  2  4  5  2   6  3  6  7   8  7  8  8  4  5
+V =-99 7  15 34 35  51 65 70 77 -   -  
+n=20; plus longue sequence de longueur 8 :
+E[17]=77;   E[15]=70;   E[12]=65;   E[8]=61;    E[7]=50;    E[3]=47;    E[2]=40;    E[1]=7; 
+quick a termine
+oui, les 2 methodes rendent le meme resultat avec n=20
+\end{verbatim}
+\end{document}

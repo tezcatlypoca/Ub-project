@@ -1,0 +1,123 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb,version}
+%%\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+%%\newcommand\comment#1{}
+
+%%\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\date{}
+\title{TP : Plus longue s\'equence croissante}
+%\author{D. Michelucci, E. Gavignet, L. Druoton, N.  Gastineau, Universit\'e de Dijon}
+\maketitle
+
+Votre programme et sa classe doivent porter votre nom (et pr\'enom en cas d'homonymie). Appelez l'encadrant chaque fois que vous avez termin\'e 
+une question. 
+
+Un tableau non tri\'e d'entiers naturels  $E[0], \ldots E[n-1]$  est donn\'e.
+Il est g\'en\'er\'e par la m\'ethode \verb@ exemple@.
+Le probl\`eme est de calculer la longueur de la s\'equence croissante (au sens large) la plus longue.
+Dans cette s\'equence, tout \'el\'ement (sauf le dernier) 
+est {\it inf\'erieur ou \'egal} \`a  son \'el\'ement suivant.
+Par exemple, ci dessous, pour $$E=[61 ;   44 ;      {\bf 15} ;     {\bf  28} ;      {\bf 31} ;      20 ;      {\bf 57} ;      4 ;       10 ;      28]$$
+la  s\'equence croissante la  plus longue a 4 \'el\'ements.
+C'est~:
+$$ E[2]=15; E[3]=28;        E[4]=31;        E[6]=57$$
+
+
+\section*{Question 1. 6 points.}  Calculez   $LT[i]$,  la longueur 
+de la s\'equence croissante la plus longue qui se termine en $E_i$ (et donc utilise $E_i$).  
+Clairement $LT[0]=1$; ensuite  exprimez, pour l'indice $i$ croissant de 1 \`a $n-1$,  $LT[i]$ en fonction de $LT[0], \ldots LT[i-1]$;
+avant de tenter de le programmer, faites le  "\`a la main" sur l'exemple ci-dessus, obtenu avec \verb@ exemple( 10)@.
+Vous devez obtenir cette figure (\`a lire de gauche \`a droite)~:
+
+\begin{comment}
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i &  0 &  1 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  9 \\
+\hline
+E_i & 61 &   44 &      15 &      28 &      31 &      20 &      57 &      4 &       10 &      28 \\
+LT_i&1 &    1 &       1 &       2 &       3 &       2 &       4 &       1 &       2 &       3 \\
+V_i & -- & 4 &       10 &      28 &      57 &      -- &    -- &    -- &    -- &    -- \\
+\hline
+\end{array}
+$$
+\end{comment}
+
+\begin{center}
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i &  0 &  1 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  9 \\
+\hline
+E_i  & 61 &   44 &      15 &      28 &      31 &      20 &      57 &      4 &       10 &      28 \\
+LT_i & 1 &    1 &       1 &       2 &       3 &       2 &       4 &       1 &       2 &       3 \\
+\hline
+\end{array}
+$$
+\end{center}
+
+\section*{Question 2. 4 points.} Modifiez la m\'ethode d'affichage qui est fournie  pour que la s\'equence soit \'ecrite dans le bon sens
+(croissant).  Par exemple, au lieu d'\'ecrire sur le terminal les termes de la s\'equence, vous les copiez dans un tableau auxiliaire, puis
+vous parcourez ce tableau auxiliaire en ordre inverse et affichez ces \'el\'ements sur votre terminal.
+
+\newpage
+\section*{Question 3. 4 points.} Au lieu de chercher dans $E_0, \ldots E_{i-1}$ quelle est la plus longue s\'equence croissante que peut prolonger $E_i$,
+cherchez la dans un tableau $V_1, V_2, \ldots V_L$~; $L=\max_{k=0}^{i-1} LT[k]$ est la longueur maximum des plus longues s\'equences connues quand $E_i$ est trait\'e, et
+$V_l$ (avec $1\le l\le L$) est la valeur du dernier \'el\'ement (dans $E$) de la plus longue s\'equence croissante de longueur $l$.  
+Si un tel $l$ n'existe pas (quand $E_i$ est plus petit que tous ses pr\'ec\'edents, ou que $i$ est nul),
+alors votre recherche s\'equentielle dans $V_1, \ldots V_L$  rendra 0. 
+Refaites l'exemple pr\'ec\'edent  \`a la main. Vous devez obtenir cette figure (\`a lire de haut en bas)~:
+
+\begin{center}
+$$
+\begin{array}{|c|c|c||c|c|c|c||c|}
+\hline
+i & E_i & LT_i & V_1 & V_2 & V_3 & V_4 & L \\
+\hline
+0 & 61 & 1 & {\bf 61} & & & & 1 \\
+1 & 44 & 1 & {\bf 44} & & & & 1 \\
+2 & 15 & 1 & {\bf 15} & & & & 1 \\
+3 & 28 & 2 & 15 & {\bf 28}  & & & 2 \\
+4 & 31 & 3 & 15 & 28  & {\bf 31} & & 3 \\
+5 & 20 & 2 & 15 & {\bf 20}  & 31 & & 3 \\
+6 & 57 & 4 & 15 & 20  & 31 & {\bf 57} & 4 \\
+7 & 4 & 1 & {\bf 4} & 20  & 31 & 57 & 4 \\
+8 & 10 & 2 & 4 & {\bf 10}  & 31 & 57 & 4 \\
+9 & 28 & 3 & 4 & 10  & {\bf 28} & 57 & 4 \\
+\hline
+\end{array}
+$$
+\end{center}
+
+\section*{Question 4. 6 points.} Cherchez $l$ par dichotomie dans le tableau $V$.
+Il faut trouver dans $V$ l'indice $l$ ($l$ est une longueur entre 1 et $L$) le plus grand tel que $V_l$ soit inf\'erieure ou \'egale \`a $E_i$.
+Or le tableau $V_1, \ldots V_L$ est toujours  tri\'e par ordre croissant, comme sur l'exemple pr\'ec\'edent~:
+$V_1\le  \ldots \le  V_L$.
+V\'erifiez que toutes les  m\'ethodes rendent les m\^emes tableaux $LT$, pour des $E$ identiques, et que la seconde m\'ethode avec une recherche dichotomique est 
+nette\-ment plus rapide pour des tailles de cent mille ou un million d'\'el\'ements dans $E$.
+
+\section*{Bonus, 2 points.} (pour rattraper des points sur votre partiel, si vous avez les 20 points). La m\'ethode d'affichage est en $O(n)$, et 
+on pr\'ef\'ererait une m\'ethode qui prenne un temps proportionnel \`a la longueur de la s\'equence. 
+Dans la m\'ethode na\"ive, stockez dans un tableau $P_i$ l'indice $k$ de l'\'el\'ement $E_k$ pr\'ec\'edant
+imm\'ediatement $E_i$ dans la plus longue s\'equence qui utilise $E_i$ (-1 s'il n'y en a pas de tel $k$). 
+Ecrivez une m\'ethode d'affichage (en ordre inverse, si c'est le plus simple) qui utilise $P$. Remarque~: $P_i$ est similaire au pr\'ed\'ecesseur 
+du sommet $i$
+dans les m\'ethodes de plus courts chemins.
+
+\section*{Bonus, 2 points.} Faites de m\^eme dans la m\'ethode rapide avec recherche dichotomique.
+
+\end{document}

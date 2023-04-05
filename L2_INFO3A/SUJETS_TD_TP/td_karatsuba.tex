@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{TD : Multiplication de Karatsuba} 
+\author{Dominique Michelucci, Universit\'e de Dijon}
+\maketitle
+
+La m\'ethode na\"ive pour multiplier des entiers de $n$ chiffres est en $O(n^2)$.
+(Par contre la m\'ethode na\"ive pour additionner est lin\'eaire...).
+
+La multiplication  de Karatsuba est plus rapide. Principe: pour multiplier $A$ et $B$, avec $A$ le plus grand,
+$n$ chiffres dans la base utilis\'ee, on  \'ecrit $A=a_0+ a_1\Omega$ et $B=b_0+b_1\Omega$,
+o\`u $\Omega$ est la puissance de la base, telle que $a_0$ et $a_1$ ont \`a peu pr\`es $n/2$ chiffres.
+
+Calculer  na\"ivement
+$$A\times B= (a_0+a_1\Omega)(b_0+b_1\Omega)=(a_1\times  b_1) \Omega^2 + (a_0\times  b_1 + a_1\times  b_0)\Omega + (a_0\times  b_0)$$
+en effectuant 4 produits sur des nombres deux fois plus courts
+est toujours en $O(n^2)$: en effet r\'esoudre l'\'equation $T(n)= 4 T(n/2)$, ou bien $T(n)= 4 T(n/2) + n$
+donne $T(n)=O(n^2)$.  V\'erifions~:
+
+Indication de preuve. Calculons d'abord la table de $T(1)=1, T(n)=4 T(n/2)$ pour simplifier~:
+$$\begin{array}{|c|c|c|}
+\hline
+\log_2 n & n & T(n) \\
+\hline
+0 & 1 & 1 \\
+1 & 2 & 4=2^2 \\
+2 & 4 & 16=4^2 \\
+3 & 8 & 64=8^2 \\
+4 & 16 & 256=16^2 \\
+\hline
+\end{array}
+$$
+Clairement $T(n)=n^2=O(n^2)$ sur ces exemples, et on le prouve trivialement par r\'ecurrence. 
+Ensuite consid\'erer $T(1)=1, T(n)=4 T(n/2)+n$ a pour effet d'introduire des termes parasites, de
+plus bas degr\'e, qui ne vont pas modifier le fait que $T(n)=O(n^2)$.
+Il vous est conseill\'e de le faire, en "travail \`a la maison"~!
+
+
+L'id\'ee de Karatsuba est de n'utiliser que 3 multiplications, au lieu de 4.
+Il utilise davantage d'additions (ou soustractions), mais elles sont en temps lin\'eaire.
+
+$$AB= (a_1\times b_1) \Omega^2 + ((a_0+a_1)\times(b_0+b_1)- a_1\times b_1 - a_0 \times b_0)\Omega + (a_0\times b_0) $$
+
+Cette m\'ethode est en $O(n^{\log_2 3})=O(n^{1.5849625007211563})$. C'est la solution de l'\'equation de
+r\'ecurence de $T(n)=3 T(n/2)+n$. V\'erifions le~:
+
+Indication de preuve. Consid\'erons d'abord, pour simplifier, $T(1)=1, T(n)=3 T(n/2)$.
+Calculons la table~:
+$$ \begin{array}{|c|c|c|}
+\hline
+\log_2 n & n  & T(n) \\
+\hline
+0 & 1 & 1= 3^0 \\
+1 & 2 & 3= 3^1 \\
+2 & 4 & 9= 3^2 \\
+3 & 8 & 27= 3^3 \\
+4 & 16 & 81= 3^4 \\
+\hline
+\end{array}$$
+Elle sugg\`ere que $T(n)=3 ^{\log_2 n}$, ce qui est facilement prouv\'e par r\'ecurrence 
+(Faites le \`a la maison!).
+Ensuite, il faut prouver que $3 ^{\log_2 n}=O(n^{\log_2 3}$)~:
+
+{
+\begin{eqnarray*}
+T(n) &=& 3^{\log_2 n}  \mbox{. Or } 3=2 ^{\log_2 3} \\
+&=& (2^{\log_2 3})^{\log_2 n} \mbox{ mais } (a^b)^c=a^{b\times c} \\
+&=& 2^{(\log_2 3) (\log_2 n)} \\
+&=& 2^{(\log_2 n) (\log_2 3)} \\
+&=& (2^{(\log_2 n)})^{\log_2 3} \\
+&=& n^{\log_2 3} = O(n^{\log_2 3})
+\end{eqnarray*}
+
+}
+
+%	$$\begin{eqnarray*}
+%	T(n) &=& 3 ^{\log_2 n}  \\
+%	%%\mbox{. Or } 3=2 ^{\log_2 3} \\
+%	&=& (2 ^{\log_2 3}) ^{\log_2 n} \\
+%	%% \mbox{ mais } (a^b)^c=a^(b\times c) \\
+%	&=& 2 ^ {(\log_2 3) (\log_2 n)} \\
+%	&=& 2 ^ {(\log_2 n) (\log_2 3)} \\
+%	&=& (2 ^ {(\log_2 n)})^{\log_2 3} \\
+%	&=& n^{\log_2 3}
+%	\end{eqnarray*}
+%	$$
+%	}
+CQFD. Ensuite, consid\'erer $T(n)=3T(n/2)+n$ ne fait qu'ajouter des termes 
+parasites, de plus bas degr\'e. Faites le "\`a la maison".
+
+
+N'a t-on rien oubli\'e~? Les retenues ! Il faut les propager. Montrer que ce post traitement est lin\'eaire en $n$.
+
+Il y a des m\'ethodes plus compliqu\'ees et plus efficaces pour le produit, en gros en $O(n \log n)$
+(je n\'eglige des facteurs $\log (\log n)$...).
+
+\section*{Apart\'e: conversion entre $\log_e X$ et $\log_k X$}
+Retrouvez la relation entre $\log_e X$ et $\log_k X$, o\`u $e$ est la base naturelle des log n\'ep\'eriens.
+
+Solution (\`a ne pas lire tout de suite...). Soit $X>0$ un nombre. Soit 
+$x=\log_k X \Leftrightarrow k^x=k^{\log_k X}=X$.
+Soit 
+$x'=\log_e X' \Leftrightarrow  e^{x'}=e^{\log_e X}= X $. Donc $X=k^x=e^{x'}$. D'o\`u~:
+$$ \log_e X= \log_e k^x = x \log_e k=(\log_k X) (\log_e k)$$
+D'o\`u~: $\log_k X = \frac{\log_e X}{\log_e k}$ ou encore~: $\frac{\log_e X}{\log_k X}=\log_e k$~: 
+tous les logarithmes sont proportionnels entre eux. 
+Cela justifie la notation $O(\log b)$, o\`u la base du log n'est pas pr\'ecis\'ee. 
+\end{document}

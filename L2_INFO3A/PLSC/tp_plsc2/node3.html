@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002 (1.67)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Question 3. 4 points.</TITLE>
+<META NAME="description" CONTENT="Question 3. 4 points.">
+<META NAME="keywords" CONTENT="tp_plsc2">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tp_plsc2.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="tp_plsc2.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html38"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/local/share/lib/latex2html/icons/next.png"></A> 
+<A NAME="tex2html36"
+  HREF="tp_plsc2.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/local/share/lib/latex2html/icons/up.png"></A> 
+<A NAME="tex2html30"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/local/share/lib/latex2html/icons/prev.png"></A>   
+<BR>
+<B> suivant:</B> <A NAME="tex2html39"
+  HREF="node4.html">Question 4. 6 points.</A>
+<B> monter:</B> <A NAME="tex2html37"
+  HREF="tp_plsc2.html">TP : Plus longue</A>
+<B> pr&eacute;c&eacute;dent:</B> <A NAME="tex2html31"
+  HREF="node2.html">Question 2. 4 points.</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00030000000000000000">
+Question 3. 4 points.</A>
+</H1> Au lieu de chercher dans <!-- MATH
+ $E_0, \ldots E_{i-1}$
+ -->
+<IMG
+ WIDTH="87" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$E_0, \ldots E_{i-1}$"> quelle est la plus longue s&#233;quence croissante que peut prolonger <IMG
+ WIDTH="23" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$E_i$">,
+cherchez la dans un tableau <!-- MATH
+ $V_1, V_2, \ldots V_L$
+ -->
+<IMG
+ WIDTH="93" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$V_1, V_2, \ldots V_L$">&nbsp;; <!-- MATH
+ $L=\max_{k=0}^{i-1} LT[k]$
+ -->
+<IMG
+ WIDTH="134" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$L=\max_{k=0}^{i-1} LT[k]$"> est la longueur maximum des plus longues s&#233;quences connues quand <IMG
+ WIDTH="23" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$E_i$"> est trait&#233;, et
+<IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img14.png"
+ ALT="$V_l$"> (avec <IMG
+ WIDTH="72" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.png"
+ ALT="$1\le l\le L$">) est la valeur du dernier &#233;l&#233;ment (dans <IMG
+ WIDTH="19" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.png"
+ ALT="$E$">) de la plus longue s&#233;quence croissante de longueur <IMG
+ WIDTH="11" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img17.png"
+ ALT="$l$">.  
+Si un tel <IMG
+ WIDTH="11" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img17.png"
+ ALT="$l$"> n'existe pas (quand <IMG
+ WIDTH="23" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$E_i$"> est plus petit que tous ses pr&#233;c&#233;dents, ou que <IMG
+ WIDTH="12" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$i$"> est nul),
+alors votre recherche s&#233;quentielle dans <!-- MATH
+ $V_1, \ldots V_L$
+ -->
+<IMG
+ WIDTH="70" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="$V_1, \ldots V_L$"> rendra 0. 
+Refaites l'exemple pr&#233;c&#233;dent  &#224; la main. Vous devez obtenir cette figure (&#224; lire de haut en bas)&nbsp;:
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{|c|c|c||c|c|c|c||c|}
+\hline
+i & E_i & LT_i & V_1 & V_2 & V_3 & V_4 & L \\
+\hline
+0 & 61 & 1 & {\bf 61} & & & & 1 \\
+1 & 44 & 1 & {\bf 44} & & & & 1 \\
+2 & 15 & 1 & {\bf 15} & & & & 1 \\
+3 & 28 & 2 & 15 & {\bf 28}  & & & 2 \\
+4 & 31 & 3 & 15 & 28  & {\bf 31} & & 3 \\
+5 & 20 & 2 & 15 & {\bf 20}  & 31 & & 3 \\
+6 & 57 & 4 & 15 & 20  & 31 & {\bf 57} & 4 \\
+7 & 4 & 1 & {\bf 4} & 20  & 31 & 57 & 4 \\
+8 & 10 & 2 & 4 & {\bf 10}  & 31 & 57 & 4 \\
+9 & 28 & 3 & 4 & 10  & {\bf 28} & 57 & 4 \\
+\hline
+\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="416" HEIGHT="219" BORDER="0"
+ SRC="img19.png"
+ ALT="\begin{displaymath}
+\begin{array}{\vert c\vert c\vert c\vert\vert c\vert c\vert ...
+...
+9 &amp; 28 &amp; 3 &amp; 4 &amp; 10 &amp; {\bf 28} &amp; 57 &amp; 4 \\
+\hline
+\end{array}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<BR><HR>
+<ADDRESS>
+Dominique Michelucci
+2012-12-06
+</ADDRESS>
+</BODY>
+</HTML>

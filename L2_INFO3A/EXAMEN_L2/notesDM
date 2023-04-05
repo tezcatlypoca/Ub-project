@@ -1,0 +1,132 @@
+-----------------------------REMARQUES
+
+INTRODUCTION 
+Leur dire de commencer par lire tout l'énoncé
+
+
+2) Equation de récurrence et complexité
+Question A : leur donner le coût de la fusion proprement dite
+
+2) Equation de récurrence et complexité
+Question D : est une question de cours
+
+3) Sous mot commun le plus long
+Dans les explications/notations du paragraphe 2 "Trouver le mot commun ... en montant).", il me semble qu'il serait plus intuitif de conserver la même organisation que pour le document de master1 (au cas où certains étudiants auraient travaillé sur ce document)... voir les modifications ci-dessous (lignes 30-40)
+
+3) Sous mot commun le plus long
+Question B : - modification de l'introduction de la question
+             - "une seule des lettres identiques de B" au lieu de "une seule lettre (identique) dans B"
+             - solution efficace ... et sans structure de graphe
+
+4) Résoudre
+Aucun exercice de ce style fait en TD.
+
+5) Suite
+- Ajouter une question au début sur la notation s0, s1, ...
+- ajouter s0=a et s1=b dans le tableau
+- réécrire la question C en deux parties
+- Supprimer les trois dernières questions (F, G, H)
+
+6) Puissance de matrice
+Question A : modification de l'introduction et ajout de "puissance rapide"
+Question B : - suppression de la double notation M-D
+             - passage des trois matrices exemples en fin de question
+
+
+
+-----------------------------DANS LE CORRIGE
+
+1) Euclide et Bezout, dans le tableau
+"-3k+1" au lieu de "3k+1"
+
+2) Equation de récurrence et complexité
+"T(n)=2T(n/2)+2n" au lieu de "T(n)=2T(n/2)+n" ?
+
+3)  Sous mot commun le plus long
+Question A : je veux bien refaire la correction pour remplacer la référnce aux documents de M1
+
+3)  Sous mot commun le plus long
+Question D : ajouter "triangle de pascal" ?
+
+5) Suite
+Question B : à faire
+
+
+
+
+
+
+
+
+
+-----------------------------MODIFICATIONS DANS LE SUJET
+
+EN-TETE
+\usepackage[left,modulo]{lineno}
+\linenumbers
+
+LIGNE 6
+\medskip
+Lisez tout l'énoncé avant de commencer à répondre aux questions.
+
+LIGNES 15-16
+comme initialisation et $2n$ comme coût de la fusion des deux moitiés d'un tableau de $n$ éléments.
+
+LIGNES 30-40
+Trouver le mot commun le plus long se ramène à calculer le chemin critique dans un graphe. En suivant les instructions ci-dessous, tous les arcs de votre graphe vont dans la même direction (de gauche à droite et en montant):
+
+\begin{itemize}
+\item tracez le graphe sur une grille ayant les chiffres de B sur les lignes et les chiffres de A sur les colonnes,
+\item un sommet $S_{lc}$ est placé à l'intersection d'une ligne horizontale $l$ et d'une droite verticale $c$ chaque fois que  $A_c$ égale $B_l$,
+\item   il y a un arc entre $S_{ij}$ et $S_{mn}$ ssi $i<m$ et $j<n$,
+\item les arcs de transitivité sont facultatifs, 
+\item par commodité, un sommet source $S_{00}$ et un sommet puits $S_{\infty\infty}$ sont ajoutés.
+\end{itemize}
+
+LIGNES 45-49
+B. Pour cette question, travaillez sous une règle plus souple en supposant que $A$ et $B$ sont deux ensembles (ce qui revient à dire que l'ordre entre les lettres n'a pas d'importance). Cependant, chaque lettre de $A$ ne peut être appariée 
+qu'avec une seule des lettres identiques de  $B$. 
+Décrivez {\bf en français} une méthode efficace pour résoudre ce problème (sans utiliser de graphe).
+
+LIGNES 63-fin de l'exercice
+\medskip
+Pour alléger, on écrit $s_0$ pour $S_{a,b}(0)$, $s_1$ pour $S_{a,b}(1)$
+et, de façon générale, $s_i$ pour $S_{a,b}(i)$.
+
+\medskip
+A. Ecrivez  $s_n$ en fonction de  $s_{n-1}$ et  $s_{n-2}$, pour $n\ge 2$.
+
+\medskip
+B. Complétez le tableau suivant. 
+...
+
+
+LIGNES 69-72
+A. Quel est le nombre minimal de produits de matrices à effectuer pour calculer $M^k$, où $M$ est une matrice donnée, et $k\in \N$ est un entier donné~?
+Rappelez les formules récursives de la puissance rapide d'une matrice. Une telle matrice peut-elle être non carrée~?
+
+LIGNE 73
+ Travaillons maintenant sur une matrice diagonale, $D$, et ...
+
+LIGNES 77-81
+\medskip
+C. Soient trois matrices $M, D, V$ telles que~: 
+
+\begin{itemize}
+
+\item $MV=VD$,
+\item la matrice $V$ est inversible (sa matrice inverse est notée  $V^{-1}$ et le produit $V V^{-1}$ est la matrice identité),
+\item la matrice $D$ est diagonale.
+
+\end{itemize}
+
+\medskip
+\emph{Par exemple les trois matrices décrites ci-dessous sont 
+conformes à cette définition.}
+ 
+
+
+
+
+
+

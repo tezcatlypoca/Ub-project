@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+%\usepackage{amss}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\newcommand\comment{}
+ 
+\def\N{\mathbb N}
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\begin{document}
+\title{EXAMEN D'ALGORITHMIQUE, I31A}
+\date{}%{12-12-2013}
+%\maketitle
+{\bf\large EXAMEN D'ALGORITHMIQUE, I31A, 12-12-2013, L2} 
+
+\medskip
+
+{\it Tous vos documents sont autorisés, mais pas la copie de votre voisin.
+N'écrivez aucun programme.
+Ecrivez lisiblement.
+Répondez aux questions dans l'ordre, en indiquant le numéro de chaque question.
+}
+
+\newcommand\q[1]{\smallskip \noindent {\bf #1.}}
+\medskip 
+
+\q{1}  {D\'eroulez l'algorithme d'Euclide pour calculer le PGCD de 132 et 102}.
+~
+
+\q{2} {D\'eroulez l'algorithme d'Euclide \'etendu (ou Bézout) pour $a=132$ et $b=102$ en remplissant un tableau comme ci-dessous. {\it Dans la dernière ligne, $b$ est nul et $a$ est le PGCD cherché}.
+L'algorithme vu en cours calcule $g$ le PGCD de $a$ et $b$, ainsi que $u$ et $v$. $u$ et $v$ sont tels que $au+bv=g=PGCD(a,b)$; on note $r=a \mod b$, et $q=\lfloor \frac{a}{b}\rfloor$
+le quotient de $a$ par $b$.   Il n'y a qu'une seule réponse correcte.
+{\large
+$$
+\begin{array}{|c|c|c|c|c|c|c|}
+\hline
+a\quad & b \quad& r \quad& q \quad& g \quad& u \quad& v \quad\\
+\hline
+\end{array}$$
+}
+
+\q{3} (suite) Quand vous remplissez les cases des colonnes $u$ et $v$, en fonction du contenu de la ligne d'après ou d'avant, quelles formules utilisez vous~?
+Réponse suggérée~: soient $(g', u', v')$ le contenu de la ligne en dessous (ou au dessus?).
+Alors $(g,u,v)=(g',?,?)$. La preuve n'est pas demandée.
+~
+
+
+\q{4} (suite) Pour $a$ et $b$ donnés, il existe une infinité de solutions $(u, v)$, déductibles de la solution donnée par l'algorithme. 
+Donnez la formule qui donne toutes les autres solutions.
+~
+
+\q{5} Citez deux problèmes indécidables en informatique.
+~
+
+\q{6} Quand un problème, bien que décidable, est-il jugé difficile en informatique ?
+~
+
+\q{7} Citez un problème décidable mais difficile en  informatique.
+~
+
+\q{8} La phrase suivante est-elle vraie,  ou bien fausse~? Si un problème est NP, alors il est difficile de vérifier une de ses solutions.  Répondez soit: "vraie", soit: "fausse".
+
+
+
+\q{9} {Citez les noms de 3 algorithmes {\it  optimaux}  de tri, utilisant des comparaisons. Quel est l'ordre de grandeur du nombre de comparaisons, pour trier $n$ éléments~?}
+~
+
+
+
+\q{10} {Le tri par base ("radix sort") n'utilise pas de comparaisons pour trier des entiers.
+Déroulez les trois étapes de cet algorithme sur cet ensemble: 312, 323, 313, 113, 123, 213, 111, 131, 221. Vous n'utiliserez que trois tiroirs.}
+~
+
+\q{11} {Citez un autre algorithme de tri d'entiers, qui lui non plus n'utilise pas de comparaison. Est-il plus ou moins efficace que le tri par base~?}
+
+~
+
+
+
+\q{12} Quel problème de graphes résout  l'algorithme de Dijkstra~?
+~
+
+
+
+\q{13} {$A$ est une matrice de $l_A$ lignes et $c_A$ colonnes; $B$ est une matrice
+de $l_B$ lignes et $c_B$ colonnes. Quand le produit $A\times  B$ est-il possible ?
+Quelle est la taille de la matrice $C=A\times B$, quand ce produit est possible? 
+Donnez la formule pour $C_{l,c}$ ($C_{l,c}$ est l'élément à la ligne 
+$l$ et à la colonne $c$ de 
+$C=A\times B$); vous supposerez que la première ligne (ou colonne) a le numéro 1.
+Combien de multiplications (entre éléments des matrices) sont effectuées au total, 
+pour calculer $C$~?
+~
+
+
+\q{14} {Donnez les {\it formules} n\'ecessaires pour le calcul r\'ecursif 
+et {\it rapide} de $a^n$ ($a$ est une matrice carrée, à valeurs enti\`eres;  
+vous noterez la matrice identité $I$). N'oubliez pas le ou les cas terminaux. 
+Il est inutile de redonner les formules pour le produit de 2 matrices. 
+Quel est l'ordre de grandeur du 
+nombre de multiplications  matricielles effectuées pour calculer $a^n$~?}  
+~
+
+
+\q{15} {Dans la question précédente, pourquoi les formules: $a^0=I, a^1=a, a^{k+1}=a \times a^k$ ne sont elles pas satisfaisantes~?}
+~
+
+\q{16} {Quel est le nom de la méthode utilisée pour résoudre "le problème des reines" et "le compte est bon"~?}
+~
+
+
+\q{17} Un arbre binaire a $F$ feuilles; $F\ge 1$. 
+Tous ses noeuds intérieurs (non feuilles) ont exactement deux fils.
+L'arbre n'est pas forcément équilibré. Est-il possible de dire combien 
+il a de noeuds intérieurs, ou bien le nombre de noeuds intérieurs peut-il varier~?
+Donnez le nombre de  noeuds intérieurs, si ce nombre est fixé par $F$. Prouvez votre réponse.
+{\it Rédigez votre preuve  avec soin}.
+~
+
+\q{18} La suite $T$ est définie par: $T_0=T_1=1, \quad T_{n}= T_{n-1}+ T_{n-2} + 1 $ quand $n \ge 2$.
+En vous inspirant du cas de la suite de Fibonacci, donnez une formule matricielle
+exprimant le vecteur  colonne~:  
+$(T_{n}, T_{n-1}, 1)$ en fonction d'une matrice, que vous préciserez, et du vecteur
+colonne $(T_1, T_0, 1)$. Donnez ensuite le principe d'une méthode
+rapide pour calculer $T_n$. Quelle est sa complexité, en fonction de $n$~?
+~
+
+\q{19} L'équation~: $ax^2+bx+c=0$ est
+résolue par l'itération de Newton (ou de Newton-Raphson); $a\neq 0, b, c \in \R^3$ ont des valeurs données.
+Donnez la formule pour l'itération de Newton; $N(x)=?$. 
+Il est demandé de remplacer $f(x)=ax^2+bx+c$ et $f'(x)$ par leurs valeurs.
+~
+
+\q{20} (suite) Donnez des valeurs numériques de $a, b, c$ et deux valeurs distinctes $x_0, x_1$ pour lesquelles $x_1=N(x_0)$
+et $x_0=N(x_1)$. Autrement dit, l'algorithme boucle.  Choisissez des valeurs simples. Illustrez votre exemple par un dessin.
+
+\end{document}

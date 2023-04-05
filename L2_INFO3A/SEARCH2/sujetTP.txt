@@ -1,0 +1,6 @@
+En reutilisant les classes L (listes) Search (definition de empilefils et estsolution), et Backtrack, et en vous inspirant de Reine.java,
+ecrire Compte.java pour résoudre le compte est bon.
+
+Un état a 6 plaques, initialement et une valeur but.
+Un fils d'un état supprime deux plaques A et B et les remplacent par une plaque
+A*B (ou A+B ou A-B ou etc). Un etat est solution quand il y a une plaque égal au but.

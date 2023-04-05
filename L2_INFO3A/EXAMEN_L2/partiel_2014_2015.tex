@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\newcommand{\marge}{18mm}
+\usepackage[left=\marge,right=\marge,top=\marge,bottom=\marge]{geometry}
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\chead{\ifthenelse{\thepage=1}{
+ \textbf{Nom :}
+  \makebox[12em]{\dotfill}
+  \hspace{2em}
+  \textbf{Pr\'enom :}
+  \makebox[12em]{\dotfill}}{}}
+\rfoot{\ifthenelse{\thepage=1}{\textit{(tournez la page s.v.p)}}{}}
+\renewcommand{\headrulewidth}{0pt}
+\linespread{1.3}
+\setlength{\columnseprule}{0.2pt}
+
+% Commandes sp\'ecifiques pour les QCM
+\newboolean{correction}
+% true pour afficher la correction
+% false pour la masquer
+\setboolean{correction}{false}
+\newcounter{QNumber}
+\newcommand{\Question}[2][:]{
+ \stepcounter{QNumber}
+  \noindent\textbf{Question \theQNumber} --
+  #2~#1}
+\newenvironment{Reponse}{
+ \begin{list}{$\square$}{\leftmargin=4em}}{
+ \end{list}\vspace{1em}}
+\newcommand{\Vrai}{
+ \item[\ifthenelse{\boolean{correction}}{$\blacksquare$}{$\square$}]}
+\newcommand{\Faux}{\item[$\square$]}
+
+\def\N{\mathbb N}
+\def\R{\mathbb R}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\begin{document}
+  \begin{center}
+    \bfseries\LARGE
+    \textit{INFO I31, partiel, 20 Nov 2012}\large
+  \end{center}
+  \sffamily
+  \begin{itshape}
+    Pour chaque question, r\'epondez directement sur la feuille.
+Quand vous avez le choix, il n'y a qu'une seule bonne r\'eponse par question. Lisez et comprenez les questions avant d'y r\'epondre~!
+  \end{itshape}
+  \begin{multicols}{2}
+
+\Question{D\'eroulez l'algorithme d'Euclide pour calculer le PGCD de 156 et 180 (en utilisant la division euclidienne, et pas la soustration)}
+$$
+\begin{array}{|c|c|c|}
+\hline
+\; a\; & \; b\; & \; r\; \\
+\hline
+180 & 156 & \quad \\
+    &     & \\
+    &     & \\
+    &     & \\
+    &     & \\
+\hline
+\end{array}$$
+
+

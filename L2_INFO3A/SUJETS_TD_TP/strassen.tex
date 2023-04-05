@@ -1,0 +1,168 @@
+
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[OT1]{fontenc}
+%\usepackage[latin1]{inputenc}
+
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{Complexité du produit de matrice par la méthode de Strassen}
+\maketitle
+
+\section{Rappel sur la complexité du produit matriciel de Strassen}
+Pour multiplier 2 matrices carrées de taille $n \times n$, la méthode de Strassen
+calcule le produit de 7 matrices de taille $n/2$ par $n/2$, et calcule des sommes de matrices de taille $n \times n$, ce qui coûte $O(n^2)$. Donc le temps $T(n)$
+vérifie~: 
+$T(1)= 1$ et pour $n=2^k \Rightarrow T(n)=7\times  T(n/2) + n^2$
+
+La suite $T(n)$ est la suite A016150 dans l'encyclopédie de Sloane\footnote{Disponible sur internet: http://oeis.org}. L'encyclopédie nous économise quelques calculs fastidieux~:
+
+{\footnotesize
+$$\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8  \\
+\hline
+n=2^k & 1 & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256  \\
+\hline\hline
+\bf{T(n)} & 1 & 11 & 93 & 715 & 5261 & 37851 & 269053 & 1899755 & 13363821 \\
+\hline\hline
+7^{k+1} & 7& 49& 343& 2401& 16807& 117649& 823543& 5764801& 40353607 \\
+\hline
+4^{k+1} & 4& 16& 64& 256& 1024& 4096& 16384& 65536& 262144 \\
+\hline\hline
+\bf{(7^{k+1}-4^{k+1})/3} & 1 & 11 & 93 & 715 & 5261 & 37851 & 269053 & 1899755 & 13363821 \\
+\hline
+\end{array}
+$$
+}
+
+On constate que~:
+$$T(2^k)= (7^{k+1}-4^{k+1})/3$$
+et, une fois la formule connue, on peut la prouver facilement par récurrence.
+On en déduit~:
+
+\begin{eqnarray*}
+3 T(n) &=&7 \times 7^k - 4 \times 4 ^ k \\
+&=& 7 \times  2^{k\frac{\log 7}{\log 2}} - 4 \times 4 ^{k\frac{\log 4}{\log 2}} \\
+&=& 7 \times  2^{k}\times 2^{\frac{\log 7}{\log 2}} - 4 \times 4 ^{k}\times 4^ {\frac{\log 4}{\log 2}} \\
+&=& 7 \times   n ^{\frac{\log 7}{\log 2}} - 4 \times n^2 \times 4^2 \\
+&=& 7 \times   n ^{\log_2 7} - 64 n^2   \\
+&=&  O( n ^{\log_2 7}) = O( n ^{2.807})
+\end{eqnarray*} 
+
+\noindent CQFD. En conclusion
+$T(n)=O(n^{\log_2 7})$. 
+
+\section{Calcul de la complexité du produit matriciel de Strassen}
+Exprimons sous forme matricielle la complexité du produit matriciel de Strassen~:
+$$ T(1)=1, T(n)=7\times T(n/2) + n^2$$
+par~:
+$$
+\left(\begin{array}{c}
+T(n)\\
+n^ 2
+\end{array}\right)=
+\left(\begin{array}{cc}
+7 & 4 \\
+0 & 4
+\end{array}\right)\left(\begin{array}{c}
+T(n/2) \\
+(n/2)^2\end{array}\right)$$
+Si $n=2^k$, alors~:
+$$
+\left(\begin{array}{c}
+T(2^k) \\
+(2^k)^2
+\end{array}\right)=
+\left(\begin{array}{cc}
+7 & 4 \\
+0 & 4
+\end{array}\right)^k\left(\begin{array}{c}
+T(1)=1 \\
+1 \end{array}\right)$$ 
+
+Posons~: 
+$$
+M=\left(\begin{array}{cc}
+7 & 4 \\
+0 & 4
+\end{array}\right)$$
+Il suffit de diagonaliser cette matrice $M$ pour obtenir la formule pour $T(n)$.
+
+Les valeurs propres de $M$, les $\lambda$ telles que 
+$$0=\det(M-\lambda I)= 
+\left|\begin{array}{cc}
+7 - \lambda & 4 \\
+0 & 4  \lambda 
+\end{array}\right|=(\lambda-7)\times(\lambda-4)$$ sont $\lambda_1=7$, $\lambda_2=4$.
+
+Le vecteur propre à gauche $v_1^t=(x_1, y_1)$, tel que 
+$$v_1^tM=\lambda_1 v_1^t= 7( x_1, y_1)=(7x_1, 4x_1+4y_1)$$
+est, à une constante multiplicative (non nulle) près~: $v_1^t=(3, 4)$.
+
+Le vecteur propre à gauche $v_2^t=(x_2, y_2)$, tel que
+$$v_2^tM=\lambda_2 v_2^t=4(x_2, y_2)=(7 x_2, 4x_2+4y_2)$$
+est, à une constante multiplicative (non nulle) près~: $v_2=(0, 1)$.
+
+En posant~: 
+$$ V=\left(\begin{array}{cc}
+3 & 4 \\
+0 & 1 
+\end{array}\right), \quad V^{-1}=\left(\begin{array}{cc}
+1/3 & -4/3 \\
+0 & 1
+\end{array}\right), \quad D=\left(\begin{array}{cc}
+ \lambda_1 & 0 \\
+0 & \lambda_2
+\end{array}\right)=\left(\begin{array}{cc}
+7  & 0 \\
+0 &  4
+\end{array}\right)$$
+on en déduit que 
+$$VM=DV \Rightarrow M=V^{-1}D V \Rightarrow M^k= (V^{-1}D V)^k=V^{-1}D^kV
+$$ 
+D'où la formule pour $T(n=2^k)$, obtenue en développant~: 
+\begin{eqnarray}
+\left(\begin{array}{c}
+T(2^k) \\
+4^k
+\end{array}\right) &=&  M^k\left(\begin{array}{c}
+1 \\
+1
+\end{array}\right) = V^{-1}D^kV\left(\begin{array}{c}
+1 \\
+1
+\end{array}\right) \\
+&=& \left(\begin{array}{cc}
+1/3 & -4/3 \\
+0 & 1
+\end{array}\right) \left(\begin{array}{cc}
+7 ^ k & 0 \\
+0 & 4^ K
+\end{array}\right) \left(\begin{array}{cc} 3 & 4 \\
+0 & 1
+\end{array}\right)\left(\begin{array}{c}
+1 \\
+1
+\end{array}\right)
+\end{eqnarray}
+
+Remarque: on peut faire la même chose pour la suite de Fibonacci, pour l'analyse en complexité de
+la multiplication de Karatsuba où $T(1)=1, T(n)=3 T(n/2)+ n$, et bien d'autres... 
+\end{document}

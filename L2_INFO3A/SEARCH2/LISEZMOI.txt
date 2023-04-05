@@ -1,0 +1,21 @@
+implantation d'un backtrack generique
+avec pile= liste d'état (Object)
+la liste est une L
+
+Pbm est un probleme bidon: atteindre 100 en partant de 1 avec les opérations
+f(x)=2x, et g(x)=2x+1
+
+Reine résout le probleme des reines
+
+COMPILER PAR
+javac L.java Search.java Backtrack.java Reine.java
+ou bien 
+make
+
+EXECUTER PAR 
+java Reine 8
+
+j'ai écrit une version non récursive de Backtrack pour ne pas avoir à augmenter la taille de pile:
+(java -Xss16m Reine 10)
+
+DM, 13 sept 2017

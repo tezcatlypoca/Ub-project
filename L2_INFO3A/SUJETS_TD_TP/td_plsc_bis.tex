@@ -1,0 +1,130 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{TD : Plus longue s\'equence croissante}
+\author{Dominique Michelucci, Universit\'e de Dijon}
+\maketitle
+
+Un tableau non tri\'e d'entiers $E[0], \ldots E[n-1]$  est donn\'e.
+Le probl\`eme est de calculer la longueur de la s\'equence croissante la plus longue.
+Note: dans cette s\'equence, tout \'el\'ement (sauf le dernier) 
+est inf\'erieur ou \'egal \`a  son \'el\'ement suivant.
+Par exemple, si  $E=[0; 300; 100; 200; 1000; 400; 500;$ $ 1100; 900; 800; 600; 700; -100]$, alors
+les s\'equences croissantes les plus longues ont 7 \'el\'ements.
+L'une d'elles est $[0; 100; 200; 400; 500; 600; 700]$.
+
+Proposez une m\'ethode en temps polynomial ($O(n^2)$). Par exemple, d\'efinir r\'ecursivement $LT[i]$, comme \'etant la longueur 
+de la s\'equence croissante la plus longue qui se termine (et utilise) $E_i$. 
+$LT[0]=1$. D\'efinissez $LT[i]$ en fonction de $LT[0], \ldots LT[i-1]$.
+Exemple:
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12  \\
+\hline
+E_i & 0 & 300 & 100 & 200 & 1000 & 400 & 500 & 1100 & 900 & 800 & 600 & 700 & -100 \\
+\hline
+LT_i & 1 & 2 & 2 & 3 & 4 & 4 & 5 & 6 & 6 & 6 & 6 &  7 & 1 \\
+\hline
+\end{array}
+$$
+
+Cette m\'ethode est en temps $O(n^2)$. Donnez une m\'ethode en $O(n\log n)$. Piste~: stockez dans un tableau
+$V[l]$ la derni\`ere valeur de la s\'equence de longueur $l$. Quand vous cherchez quelle est la plus longue s\'equence croissante
+que peut prolonger $E_i$, vous pouvez proc\'eder par dichotomie dans le tableau $V$. Il faut aussi g\'erer $L$, la plus grande 
+longueur courante des s\'equences croissantes. N'oubliez pas de mettre \`a jour le tableau $V$.
+Exemple: 
+$$ 
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12  \\
+\hline
+E_i & 0 & 300 & 100 & 200 & 1000 & 400 & 500 & 1100 & 900 & 800 & 600 & 700 & -100 \\
+\hline
+LT_i & 1 & 2 & 2 & 3 & 4 & 4 & 5 & 6 & 6 & 6 & 6 & 7 & 1 \\
+\hline
+V_i & - & -100 & 100 & 200 & 400 & 500 & 600 & 700 & - & - & - & - & - \\
+\hline
+\end{array}
+$$
+
+La suite suppose pour simplifier que tous les \'el\'ements $E_i$ sont distincts.
+
+Q: Soit $S_k$ la sous s\'equence form\'ee par les $E_i$ dont la LT (longueur terminale) vaut $k$. Que constatez-vous? Prouvez le.
+
+
+Q. Soit $E_i$ le premier (i minimum) \'el\'ement tel que $LT[i]=l$, avec $l>1$.
+Prouver que $E_i$ prolonge $E_k$, o\`u $k$ est l'\'el\'ement le plus \`a gauche ($k$ maximum, $k<i$) tel que $LT[k]=l-1$; autrement dit,
+il est inutile de v\'erifier que $E[k] < E[i]$~: il l'est. 
+
+Q: Quelle est la longueur de la s\'equence commune la plus longue entre une s\'equence croissante et une s\'equence d\'ecroissante~? (Tous les $E_i$ sont distincts)
+
+Q: Soit $L$ la longueur de la s\'equence croissante la plus longue.
+
+Q: quelle application de cette partition minimale en s\'equences d\'ecroissantes~?
+En d\'eduire que toute partition en  s\'equences d\'ecroissantes a au minimum $L$ s\'equences d\'ecroissantes. 
+
+
+Q: En d\'eduire une m\'ethode pour partitionner une s\'equence en un nombre minimum de s\'equences d\'ecroissantes.
+\newpage
+
+Q: Soit $S_k$ la sous s\'equence form\'ee par les $E_i$ dont la LT (longueur terminale) vaut $k$. Que constatez-vous? Prouvez le.
+
+R: Elles sont d\'ecroissantes. Preuve triviale.
+
+
+Q. Soit $E_i$ le premier (i minimum) \'el\'ement tel que $LT[i]=l$, avec $l>1$.
+Prouver que $E_i$ prolonge $E_k$, o\`u $k$ est l'\'el\'ement le plus \`a gauche ($k$ maximum, $k<i$) tel que $LT[k]=l-1$; autrement dit,
+il est inutile de v\'erifier que $E[k] < E[i]$~: il l'est. 
+
+R: trivial, cf  Q pr\'ec\'edente.
+
+Q: Quelle est la longueur de la s\'equence commune la plus longue entre une s\'equence croissante et une s\'equence d\'ecroissante~? (Tous les $E_i$ sont distincts)
+
+R: la s\'equence commune la plus longue a soit 0 soit 1 seul \'el\'ement en commun. Si elle en a deux ($a, b$ dans cet ordre, ou plus), alors $a < b$  et $a > b$, contradiction.
+
+Q: 
+soit $L$ la longueur de la s\'equence croissante la plus longue.
+En d\'eduire que toute partition en  s\'equences d\'ecroissantes a au minimum $K$ s\'equences d\'ecroissantes. 
+
+R: 
+soit $K$ la  s\'equence croissante la plus longue, de longueur $L$.
+Soient $D_1, D_2, \ldots D_d$ une partition en  s\'equences d\'ecroissantes (il y a donc $d$  s\'equences d\'ecroissantes dans cette partition).
+Tout \'el\'ement $E_i$ de $K$ se trouve dans exactement une seule des $D_1$ ou $D_2$ ou $\ldots D_d$.  Mais chaque $D_j$ ne peut contenir
+qu'un seul des \'el\'ements de $K$. Donc $d\ge L$.
+
+
+R: Soit $D_1, D_2, \ldots D_d$ une partition en  s\'equences d\'ecroissantes. On a vu que $d\ge L$. Il manque une preuve d'existence pour que le plus petit des $d$ 
+soit vraiment \'egal \`a  $L$. Mais c'est donn\'e par une question pr\'ec\'edente. Donc: la longueur de la s\'equence croissante la plus longue est 
+le nombre minimum de  s\'equences d\'ecroissantes des partitions en s\'equence d\'ecroissantes.
+
+Q: En d\'eduire une m\'ethode pour partitionner une s\'equences en un ensemble de s\'equences d\'ecroissantes.
+
+R: calculez la $LT_i$ maximum: $L$ par la m\'ethode en $O(n \log n)$. Soient $S_1, \ldots S_L$ ($S_k$ la sous s\'equence form\'ee par les $E_i$ dont la LT  vaut $k$): 
+elles partitionnent la s\'equence en  $L$ s\'equences d\'ecroissantes.
+
+Q: quelle application de cette partition minimale en s\'equences d\'ecroissantes~?
+
+R: le tri par monotonie, pour des ensembles gigantesques qui ne rentrent pas en m\'emoire centrale; ils sont d'abord partitionn\'es en s\'equences
+d\'ecroissantes; chacune est sauvegard\'e sur disque; ensuite ces fichiers tri\'es sont fusionn\'es~: c'est comme le tri par fusion mais 
+il peut y avoir bien plus que 2 listes (ou fichiers) \`a fusionner; il faut parcourir s\'equentiellement ces fichiers; un tas (heap) est  utilis\'e
+pour stocker les "t\^etes" de ces fichiers; quand la t\^ete du fichier $F_k$ est trait\'ee, il faut avancer la t\^ete de lecture dans le fichier $F_k$
+et ins\'erer (ou remplacer) dans le tas. On esp\`ere que le tas rentre en m\'emoire centrale. Pour un ensemble al\'eatoire de $n$ \'el\'ements,
+que vaut $L$~? Question math\'ematiquement non triviale, mais il est facile de mesurer. Sujet de TP possible...
+\end{document}

@@ -1,0 +1,9 @@
+tri rapide en place dans un tableau => le tableau est modifie
+il faut gerer 3 parties dans le partitionnement: 
+les inferieurs au pivot
+les egaux au pivot
+les superieurs au pivot.
+Si on ne gere que <= et >, alors le programme est en temps quadratique quand tous les elements sont egaux.
+
+DM a fait une interface Comp (comparator). Le tableau est un tableau d'objets.
+

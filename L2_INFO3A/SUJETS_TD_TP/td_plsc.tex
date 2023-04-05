@@ -1,0 +1,71 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{TD : Plus longue s\'equence croissante}
+\author{Dominique Michelucci, Universit\'e de Dijon}
+\maketitle
+
+Un tableau non tri\'e d'entiers $E[0], \ldots E[n-1]$  est donn\'e.
+Le probl\`eme est de calculer la longueur de la s\'equence croissante la plus longue.
+Note: dans cette s\'equence, tout \'el\'ement (sauf le dernier) 
+est inf\'erieur ou \'egal \`a  son \'el\'ement suivant.
+En premi\`ere approximation, vous pouvez supposer pour simplifier que tous les \'el\'ements sont diff\'erents.
+Par exemple, si  $E=[0; 300; 100; 200; 1000; 400; 500;$ $ 1100; 900; 800; 600; 700; -100]$, alors
+les s\'equences croissantes les plus longues ont 7 \'el\'ements.
+L'une d'elles est $[0; 100; 200; 400; 500; 600; 700]$.
+
+Proposez une m\'ethode en temps polynomial ($O(n^2)$). Par exemple, d\'efinir r\'ecursivement $LT[i]$, comme \'etant la longueur 
+de la s\'equence croissante la plus longue qui se termine (et utilise) $E_i$. 
+$LT[0]=1$. D\'efinissez $LT[i]$ en fonction de $LT[0], \ldots LT[i-1]$.
+Exemple:
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12  \\
+\hline
+E_i & 0 & 300 & 100 & 200 & 1000 & 400 & 500 & 1100 & 900 & 800 & 600 & 700 & -100 \\
+\hline
+LT_i & 1 & 2 & 2 & 3 & 4 & 4 & 5 & 6 & 6 & 6 & 6 &  7 & 1 \\
+\hline
+\end{array}
+$$
+
+Cette m\'ethode est en temps $O(n^2)$. Donnez une m\'ethode en $O(n\log n)$. Piste~: stockez dans un tableau
+$V[l]$ la derni\`ere valeur de la s\'equence de longueur $l$. Quand vous cherchez quelle est la plus longue s\'equence croissante
+que peut prolonger $E_i$, vous pouvez proc\'eder par dichotomie dans le tableau $V$. Il faut aussi g\'erer $L$, la plus grande 
+longueur courante des s\'equences croissantes. N'oubliez pas de mettre \`a jour le tableau $V$.
+Exemple: 
+$$ 
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+i & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12  \\
+\hline
+E_i & 0 & 300 & 100 & 200 & 1000 & 400 & 500 & 1100 & 900 & 800 & 600 & 700 & -100 \\
+\hline
+LT_i & 1 & 2 & 2 & 3 & 4 & 4 & 5 & 6 & 6 & 6 & 6 & 7 & 1 \\
+\hline
+V_i & - & -100 & 100 & 200 & 400 & 500 & 600 & 700 & - & - & - & - & - \\
+\hline
+\end{array}
+$$
+
+Programmez ceci en TP, en deux temps, d'abord la m\'ethode en $O(n^2)$, puis la m\'ethode en $O(n\log n)$.
+V\'erifiez que les 2 programmes rendent les m\^emes r\'esultats, et que la m\'ethode avec dichotomie est
+nettement plus rapide que la m\'ethode en temps quadratique pour $n$ assez \'elev\'e (quelques dizaines ou centaines de milliers).
+\end{document}

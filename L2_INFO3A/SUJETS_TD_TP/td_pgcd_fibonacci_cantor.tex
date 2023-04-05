@@ -1,0 +1,113 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{Sujet TD:  Arithm\'etique } 
+\author{Dominique Michelucci, Universit\'e de Dijon}
+\date{}
+\maketitle
+
+\section{PGCD et  Fibonacci dans la m\^eme gal\`ere}
+
+1. Combien y a t-il d'appels r\'ecursifs, ou d'\'etapes lors du calcul du PGCD de $F_{n-1}$ et $F_n$,
+o\`u $F_n$ est la suite de Fibonacci~: $F_0=0$, $F_1=1$, $F_n=F_{n-1}+F_{n-2}$ pour $n\ge 2$.
+
+2. Soit $\phi$ et $\phi'$ les 2 racines de $X^2=X+1$, $\phi$ est la plus grande.
+Calculer $\phi$ et $\phi'$.
+$\phi$ est appel\'e le nombre d'or.
+Prouvez que $F_n= a \phi^n + b \phi'^n$ pour 2 constantes $a, b$ que vous calculerez
+(par exemple en consid\'erant  $F_0$ et $F_1$); ensuite proc\'edez par r\'ecurrence.
+
+3. Montrez que $F_n \in O(\phi^n)$.
+
+4.  Vous admettrez que le PGCD de 2 nombres successifs dans la suite de Fibonacci est le pire des cas.
+Quelle est la complexit\'e du nombre d'\'etapes du calcul du  PGCD de $a, b\le N$.
+Vous devez trouver qu'il y a $O(\log_{\phi} N)=O(\log_2 N)= O(\log_e N)$, car tous ces log sont proportionnels.
+
+
+\section{2 m\'ethodes pour calculer l'inverse de $t$ mod $P$}
+Soit $t$ un entier donn\'e modulo $P$. On veut trouver $x$ tel que $tx=1$ mod $P$. 
+On dit que $x$ est l'inverse de $t$, et on le note parfois $t^{-1}$ ou $1/t$ (modulo $P$).
+
+Si $P$ est premier, alors d'apr\`es le petit th\'eor\`eme de Fermat, pour tout $t$ non nul, $t^{P-1}=1$ mod $P$, donc $t\times t^{P-2}= t^{P-1}=1$, donc $t^{P-2}$ est l'inverse de $t$
+
+Une autre m\'ethode utilise l'algoritme \'etendu d'Euclide sur $t$ et $P$~:
+il donne $u, v$ tel que $tu + Pv= g$ o\`u $g$ est le PGCD de $t$ et $P$.
+Si $P$ est premier, et $t$ r\'eduit modulo $P$, alors $u$ est l'inverse  de $t$~:
+il suffit de consid\'erer $tu + Pv= 1$ modulo $P$, ce qui donne~: $tu+0=1$.
+
+Note: Ceci est coh\'erent avec le fait que si $(u, v, g)$ est une solution d'Euclide$(a,b)$,
+(ie $au+bv=g=gcd(a,b)$),
+alors $(u+b,v-a,g)$ est aussi solution, et donc $u+\lambda b, v- \lambda a, g)$ aussi pour $\lambda\in \Z$. 
+
+Si $g$ est diff\'erent de 1, cela signifie que $P$ n'est pas premier.
+
+\section{Racine carr\'ee mod un nombre premier $P > 2$}
+
+\subsection{Crit\`ere d'Euler}
+
+Crit\`ere d'Euler : $a$ est un carr\'e modulo $P$ (on dit: un r\'esidu quadratique) ssi $a^{\frac{P-1}{2}}= 1$ modulo $P$.
+
+Remarquez que, comme $x$ et $-x=P-x$  ont m\^eme carr\'e, la moiti\'e des
+nombres $1, 2,\ldots P-1$ sont des carr\'es, et l'autre moiti\'e des non carr\'es. 
+
+Preuve du crit\`ere d'Euler~: par le petit th\'eor\`eme de Fermat, 
+$x^{p-1}-1 = (x^{\frac{P-1}{2}}-1) (x^{\frac{P-1}{2}}+1)$ consid\'er\'e modulo $P$  a 
+$p-1$ racines: $1, 2, \ldots p-1$. Les carr\'es modulo $P$ sont forc\'ement racines de la 
+partie $(x^{\frac{P-1}{2}}-1)$ puisque 
+$$(x^2)^{\frac{P-1}{2}}- 1= x^{P-1}- 1$$ est \'egal \`a 0, par le thm de Fermat.
+
+\subsection{$P= 3$ modulo 4}
+Si $P= 3$ modulo 4 (et premier), et si $a$ est un carr\'e (ce qu'on peut d\'ecider par le crit\`ere d'Euler...),
+alors une des deux racines carr\'ees de $a$ est 
+$$x=a^{\frac{P+1}{4}}\mbox{ car : } x^2= a^{\frac{P+1}{2}}=a^{\frac{P-1}{2}}a^{\frac{2}{2}}=1 \times a= a$$
+
+
+\subsection{ $P=1$ mod 4. M\'ethode de Zassenhauss-Cantor}
+
+Si $P=1$ modulo 4, il n'y a pas de formule, mais l'algorithme probabiliste suivant (qui fonctionne aussi pour $P=3$ modulo 4: yapasde raison...). Soit $a$ un r\'esidu quadratique dont on cherche la racine carr\'ee. Soit $x$ cette racine carr\'ee, inconnue. On consid\`ere une valeur al\'eatoire $t$
+dans $1, 2, \ldots P-1$, et on calcule $(x+t)^{\frac{P-1}{2}}$; \c{c}a vaut $\pm 1$ d'apr\`es le petit th\'eor\`eme de Fermat (ou, en utilisant le crit\`ere d'Euler, +1 pour un r\'esidu quadratique, -1 pour un non r\'esidu quadratique). Pour calculer $(x+t)^{\frac{P-1}{2}}$, on r\'eduit en
+rempla\c{c}ant $x^2$ par $a$ (puisque par d\'efinition $x^2=a$), et les calculs sont bien s\^ur r\'eduits modulo $P$. On trouve donc $u, v$ tels que $(x+t)^{\frac{P-1}{2}}=u+vx$. Si $v$ est diff\'erent de 0, on r\'esout~: $u+vx=\pm 1$, et on trouve $x=(1-u)v^{-1}$. 
+Attention, $(x+t)^{\frac{P-1}{2}}=\pm 1$ ... sauf quand $t=-x$, voir plus bas. Il faut donc toujours v\'erifier que $x^2=a$ mod $P$, pour d\'etecter cette erreur!
+
+Exemple~: $P=13, a=10$. 
+
+
+Avec $t=5$, on trouve $(x+5)^{\frac{P-1}{2}}=0+2x$. 
+R\'esoudre $2x=1$ mod 13 donne $x=1/2=7$, ce qui est correct: $7^2=10$. R\'esoudre 
+$2x=-1=12$ mod 13 donne $x=6$, qui est bien l'autre racine carr\'ee de 10. 
+Remarquer que 6+7=0  mod 13.
+
+Avec $t=6$, on obtient $(x+6)^{\frac{P-1}{2}}=7+12 x$, qui vaut $\pm 1$.
+Pour $+1$~: $7+12 x=1 \Rightarrow x=(1-7)/12=6$ mod 13 et en effet $6^2=a=10$.  
+Pour $-1$~: $7+12 x= -1=12  \Rightarrow x=(12-7)/12=8$ mais  $8^2=12\neq a$. Probl\`eme~! C'est d\^u au fait que 
+cette valeur de $t$ est l'oppos\'e de la racine carr\'ee 6 de 10; donc on a calcul\'e $(t+x)^{\frac{P-1}{2}}=0^{\frac{P-1}{2}}=0$, et pas 1. Mais ce cas ne se produit que dans 2 cas sur $P$.
+Et il donne malgr\'e tout une racine correcte; l'autre racine est l'oppos\'ee de la racine correcte.
+
+L'essai avec $t=1$ \'echoue car  $(1+x)^{\frac{P-1}{2}}=12+0x$, qui ne nous apprend rien.
+
+Etudiez le cas $P=13$. Calculer la table des $x\in 1, 2\ldots 12$, et les $x^2$ mod 13.
+Calculez la racine carr\'ee de 10 avec d'autres valeurs de $t$.
+
+Bien s\^ur, il faut utiliser la m\'ethode rapide pour calculer la  puissance $(x+t)^{\frac{P-1}{2}}$.
+
+\section{Test probabiliste de primalit\'e}
+Si $P$ est premier, alors pour tout $a$ non nul modulo $P$, 
+$a^{\frac{P-1}{2}}=\pm 1$.  Tester des valeurs al\'eatoires de $a$ donne un test probabiliste
+de primalit\'e de $P$.
+\end{document}

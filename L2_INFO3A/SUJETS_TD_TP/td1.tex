@@ -1,0 +1,93 @@
+\documentclass[a4paper]{article}
+\usepackage{epsfig,epic,eepic,amssymb}
+\graphicspath{{FIG/}{PS/}}
+\usepackage[francais]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{listings}
+\lstset{language=caml, extendedchars=true}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\R{\mathbb{R}}
+
+\begin{document}
+\title{Sujet TD  1, Licence 2, module I31} 
+\author{Dominique Michelucci, Universit\'e de Dijon}
+\maketitle
+
+1. V\'erifiez que vous saurez programmer en TP l'algorithme d'Euclide \'etendu (pgcd et coefficients de B\'ezout).
+
+Idem pour le crible d'Eratosth\`ene.
+
+2. Dessinez la courbe $y=1/x$ pour $x\in [1/2, 5]$.
+En d\'eduire:
+$$ 1.083 \approx 13/12 =1/2 + 1/3 + 1/4 < \log 4 < 1 + 1/2 + 1/3 = 11/6 \approx 1.833 $$ 
+
+D\'eduisez en une formule pour encadrer $\log x$.
+
+Comment peut-on am\'eliorer la pr\'ecision~?
+
+Rappel (vu en cours): $\log x = \int_{t=1}^{t=x} \frac{1}{t} dt$ est l'aire sous l'arc de l'hyperbole ($y=1/x$). $H(k)=1 + 1/2 + 1/3 + \ldots 1/k$ est la s\'erie harmonique, tronqu\'ee au terme $k$.
+On en d\'eduit que pour un grand entier $n$, $\log n\approx H_n$. En fait $\gamma=\lim_{n\rightarrow \infty} H_n - \log n\approx 0.577$ est appel\'ee constante d'Euler.
+
+
+3. D'apr\`es le petit th\'eor\`eme de Fermat, si $p$ est un entier premier, alors pour tout $k\in \N$, on a~: $1=k^{p-1}$ modulo $p$. Un test probabiliste calcule $k^{p-1}$ modulo $ p$ pour 
+un certain nombre (disons de l'ordre de $\log p$) de valeurs enti\`eres al\'eatoires 
+de $k$ (dans $[1, p-1]$); si pour tous les tests,  $1= k^{p-1} $ modulo  $ p $
+le nombre $p$ est "probablement" premier. Sinon (pour un des tests, $1 \neq k^{p-1}$ modulo $p$),le nombre $p$ n'est s\^urement pas premier.
+Comment pouvez vous optimiser le calcul de $k^{p-1}$~?
+
+Remarque: $a^d= a^{d {\small \mbox{ mod }} \phi(p)}$ modulo  $ p $ pour tout entier (premier ou non premier), o\`u $\phi(p)$ est l'indicatrice d'Euler;
+$\phi(p)$ est le nombre d'entiers dans $[1,p-1]$ et premiers avec $p$ 
+(leur PGCD avec $p$ vaut 1). Si $p$ est premier, $\phi(p)=p-1$.
+
+Remarque: les nombres de Carmichael passent tous ces tests, mais ne sont
+pas premiers.
+Il vaut mieux utiliser le test probabiliste de primalit\'e de  Solovay-Strassen,
+qui utilise aussi l'exponentiation rapide, ou le test de Miller-Rabin. 
+
+4. Ecrire une classe ListEntier en Java. 
+Null est la liste vide. Une liste non vide a une t\^ete, qui est un entier.
+Elle a aussi une queue, qui est une liste (\'eventuellement vide).
+hd(l) retourne la t\^ete (ou bien l.hd() si vous pr\'ef\'erez).
+tl(l) retourne la queue de la liste l (ou bien l.tl() si vous pr\'ef\'erez).
+L'appel cons( t: un entier, q: une liste) retourne une nouvelle liste, 
+de t\^ete t, de queue q. Remarquez que cette interface ne permet pas de modifier une liste.
+ 
+5. Ecrire une fonction (ou une m\'ethode...) pour tester si une liste contient un entier donn\'e.
+
+6. Ecrire une fonction (ou une m\'ethode...) pour cr\'eer une liste \'egale \`a une liste donn\'ee, mais o\`u la premi\`ere occurence d'un entier e (pass\'e en param\`etre) est supprim\'ee. Noter que les queues des 2 listes peuvent \^etre partag\'ees.
+
+7.  Ecrire une fonction (ou une m\'ethode...) qui rende le $k$ i\`eme \'el\'ement (un entier)
+d'une liste donn\'ee. Par convention le premier est le 0 i\`eme. Ne pas perdre de temps avec le traitement des erreurs.
+  
+8. Ecrire (en r\'ecursif et/ou it\'eratif)
+une fonction rendant la longueur d'une liste: 0 pour NULL, 1 + lgr( tl(l)) pour l non vide. 
+
+9. Ecrire une fonction (m\'ethode...) rendant le minimum d'une liste.
+
+10. Ecrire le trif na\"if d'une liste l. Si la liste est vide, elle est tri\'ee. Sinon
+soit m le minimum de l, et soit l'= suppression( l, m). Alors la liste tri\'ee
+est cons( m, trinaif( l')).
+
+11. Ecrire le tri rapide d'une liste l. Vous prendrez comme piv\^ot le premier (pas le plus petit)
+\'el\'ement de la liste .
+
+12. Ecrire le tri rapide d'un tableau.  Le tableau sera modifi\'e.
+
+13. Ecrire le tri par tas (ou heapsort) d'un tableau. Le tableau sera modifi\'e.
+
+S'il reste du temps~:
+
+14. Trouvez une m\'ethode pour calculer le nombre de fa\c{c}ons de choisir $k$ objets parmi $n$ (les coefficients binomiaux). 
+
+15. Trouvez une m\'ethode (r\'ecursive) pour calculer tous les sous ensembles d'un ensemble donn\'e d'entiers (qu'on supposera tous distincts). Les ensembles seront repr\'esent\'es par des listes.
+
+
+\end{document}

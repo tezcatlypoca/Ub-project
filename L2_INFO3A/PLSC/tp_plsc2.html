@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<TITLE>TP : Plus longue séquence croissante
+</TITLE>
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META name="GENERATOR" content="hevea 1.10">
+<STYLE type="text/css">
+.li-itemize{margin:1ex 0ex;}
+.li-enumerate{margin:1ex 0ex;}
+.dd-description{margin:0ex 0ex 1ex 4ex;}
+.dt-description{margin:0ex;}
+.toc{list-style:none;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.footnoterule{margin:1em auto 1em 0px;width:50%;}
+.caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}
+.title{margin:2ex auto;text-align:center}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+.flushleft{text-align:left;margin-left:0ex;margin-right:auto;}
+.flushright{text-align:right;margin-left:auto;margin-right:0ex;}
+DIV TABLE{margin-left:inherit;margin-right:inherit;}
+PRE{text-align:left;margin-left:0ex;margin-right:auto;}
+BLOCKQUOTE{margin-left:4ex;margin-right:4ex;text-align:left;}
+TD P{margin:0px;}
+.boxed{border:1px solid black}
+.textboxed{border:1px solid black}
+.vbar{border:none;width:2px;background-color:black;}
+.hbar{border:none;height:2px;width:100%;background-color:black;}
+.hfill{border:none;height:1px;width:200%;background-color:black;}
+.vdisplay{border-collapse:separate;border-spacing:2px;width:auto; empty-cells:show; border:2px solid red;}
+.vdcell{white-space:nowrap;padding:0px;width:auto; border:2px solid green;}
+.display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}
+.dcell{white-space:nowrap;padding:0px;width:auto; border:none;}
+.dcenter{margin:0ex auto;}
+.vdcenter{border:solid #FF8000 2px; margin:0ex auto;}
+.minipage{text-align:left; margin-left:0em; margin-right:auto;}
+.marginpar{border:solid thin black; width:20%; text-align:left;}
+.marginparleft{float:left; margin-left:0ex; margin-right:1ex;}
+.marginparright{float:right; margin-left:1ex; margin-right:0ex;}
+.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
+.part{margin:2ex auto;text-align:center}
+.lstlisting{font-family:monospace;white-space:pre;margin-right:auto;margin-left:0pt;text-align:left}
+</STYLE>
+</HEAD>
+<BODY >
+<!--HEVEA command line is: hevea tp_plsc2 -->
+<!--CUT DEF section 1 --><TABLE CLASS="title"><TR><TD><H1 CLASS="titlemain">TP : Plus longue séquence croissante</H1></TD></TR>
+</TABLE><P>Votre programme et sa classe doivent porter votre nom (et prénom en cas d&#X2019;homonymie). Appelez l&#X2019;encadrant chaque fois que vous avez terminé 
+une question. </P><P>Un tableau non trié d&#X2019;entiers naturels <I>E</I>[0], &#X2026; <I>E</I>[<I>n</I>&#X2212;1] est donné.
+Il est généré par la méthode  exemple@.
+Le problème est de calculer la longueur de la séquence croissante (au sens large) la plus longue.
+Dans cette séquence, tout élément (sauf le dernier) 
+est <I>inférieur ou égal</I> à son élément suivant.
+Par exemple, ci dessous, pour </P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><I>E</I>=[61 ;   44 ;      <B>15</B> ;     <B>28</B> ;      <B>31</B> ;      20 ;      <B>57</B> ;      4 ;       10 ;      28]</TD></TR>
+</TABLE><P>
+la séquence croissante la plus longue a 4 éléments.
+C&#X2019;est :
+</P><TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><I>E</I>[2]=15; <I>E</I>[3]=28;        <I>E</I>[4]=31;        <I>E</I>[6]=57</TD></TR>
+</TABLE><!--TOC section Question 1. 6 points.-->
+<H2 CLASS="section"><!--SEC ANCHOR -->Question 1. 6 points.</H2><!--SEC END --><P> Calculez <I>LT</I>[<I>i</I>], la longueur 
+de la séquence croissante la plus longue qui se termine en <I>E</I><SUB><I>i</I></SUB> (et donc utilise <I>E</I><SUB><I>i</I></SUB>). 
+Clairement <I>LT</I>[0]=1; ensuite exprimez, pour l&#X2019;indice <I>i</I> croissant de 1 à <I>n</I>&#X2212;1, <I>LT</I>[<I>i</I>] en fonction de <I>LT</I>[0], &#X2026; <I>LT</I>[<I>i</I>&#X2212;1];
+avant de tenter de le programmer, faites le "à la main" sur l&#X2019;exemple ci-dessus, obtenu avec  exemple( 10)@.
+Vous devez obtenir cette figure (à lire de gauche à droite) :</P><DIV CLASS="center">
+<TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1><TR><TD ALIGN=center NOWRAP><I>i</I></TD><TD ALIGN=center NOWRAP>0</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>3</TD><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP>5</TD><TD ALIGN=center NOWRAP>6</TD><TD ALIGN=center NOWRAP>7</TD><TD ALIGN=center NOWRAP>8</TD><TD ALIGN=center NOWRAP>9 </TD></TR>
+<TR><TD ALIGN=center NOWRAP><I>E</I><SUB><I>i</I></SUB></TD><TD ALIGN=center NOWRAP>61</TD><TD ALIGN=center NOWRAP>44</TD><TD ALIGN=center NOWRAP>15</TD><TD ALIGN=center NOWRAP>28</TD><TD ALIGN=center NOWRAP>31</TD><TD ALIGN=center NOWRAP>20</TD><TD ALIGN=center NOWRAP>57</TD><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP>10</TD><TD ALIGN=center NOWRAP>28 </TD></TR>
+<TR><TD ALIGN=center NOWRAP><I>LT</I><SUB><I>i</I></SUB></TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>3</TD><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>3 </TD></TR>
+</TABLE></TD></TR>
+</TABLE>
+</DIV><!--TOC section Question 2. 4 points.-->
+<H2 CLASS="section"><!--SEC ANCHOR -->Question 2. 4 points.</H2><!--SEC END --><P> Modifiez la méthode d&#X2019;affichage qui est fournie pour que la séquence soit écrite dans le bon sens
+(croissant). Par exemple, au lieu d&#X2019;écrire sur le terminal les termes de la séquence, vous les copiez dans un tableau auxiliaire, puis
+vous parcourez ce tableau auxiliaire en ordre inverse et imprimez ces éléments.</P><!--TOC section Question 3. 4 points.-->
+<H2 CLASS="section"><!--SEC ANCHOR -->Question 3. 4 points.</H2><!--SEC END --><P> Au lieu de chercher dans <I>E</I><SUB>0</SUB>, &#X2026; <I>E</I><SUB><I>i</I>&#X2212;1</SUB> quelle est la plus longue séquence croissante que peut prolonger <I>E</I><SUB><I>i</I></SUB>,
+cherchez la dans un tableau <I>V</I><SUB>1</SUB>, <I>V</I><SUB>2</SUB>, &#X2026; <I>V</I><SUB><I>L</I></SUB> ; <I>L</I>=max<SUB><I>k</I>=0</SUB><SUP><I>i</I>&#X2212;1</SUP> <I>LT</I>[<I>k</I>] est la longueur maximum des plus longues séquences connues quand <I>E</I><SUB><I>i</I></SUB> est traité, et
+<I>V</I><SUB><I>l</I></SUB> (avec 1&#X2264; <I>l</I>&#X2264; <I>L</I>) est la valeur du dernier élément (dans <I>E</I>) de la plus longue séquence croissante de longueur <I>l</I>. 
+Si un tel <I>l</I> n&#X2019;existe pas (quand <I>E</I><SUB><I>i</I></SUB> est plus petit que tous ses précédents, ou que <I>i</I> est nul),
+alors votre recherche séquentielle dans <I>V</I><SUB>1</SUB>, &#X2026; <I>V</I><SUB><I>L</I></SUB> rendra 0. 
+Refaites l&#X2019;exemple précédent à la main. Vous devez obtenir cette figure (à lire de haut en bas) :</P><DIV CLASS="center">
+<TABLE CLASS="display dcenter"><TR VALIGN="middle"><TD CLASS="dcell"><TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1><TR><TD ALIGN=center NOWRAP><I>i</I></TD><TD ALIGN=center NOWRAP><I>E</I><SUB><I>i</I></SUB></TD><TD ALIGN=center NOWRAP><I>LT</I><SUB><I>i</I></SUB></TD><TD ALIGN=center NOWRAP><I>V</I><SUB>1</SUB></TD><TD ALIGN=center NOWRAP><I>V</I><SUB>2</SUB></TD><TD ALIGN=center NOWRAP><I>V</I><SUB>3</SUB></TD><TD ALIGN=center NOWRAP><I>V</I><SUB>4</SUB></TD><TD ALIGN=center NOWRAP><I>L</I> </TD></TR>
+<TR><TD ALIGN=center NOWRAP>0</TD><TD ALIGN=center NOWRAP>61</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP><B>61</B></TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>1 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP>44</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP><B>44</B></TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>1 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>15</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP><B>15</B></TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>1 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>3</TD><TD ALIGN=center NOWRAP>28</TD><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>15</TD><TD ALIGN=center NOWRAP><B>28</B></TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>2 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP>31</TD><TD ALIGN=center NOWRAP>3</TD><TD ALIGN=center NOWRAP>15</TD><TD ALIGN=center NOWRAP>28</TD><TD ALIGN=center NOWRAP><B>31</B></TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>3 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>5</TD><TD ALIGN=center NOWRAP>20</TD><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>15</TD><TD ALIGN=center NOWRAP><B>20</B></TD><TD ALIGN=center NOWRAP>31</TD><TD ALIGN=center NOWRAP>&nbsp;</TD><TD ALIGN=center NOWRAP>3 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>6</TD><TD ALIGN=center NOWRAP>57</TD><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP>15</TD><TD ALIGN=center NOWRAP>20</TD><TD ALIGN=center NOWRAP>31</TD><TD ALIGN=center NOWRAP><B>57</B></TD><TD ALIGN=center NOWRAP>4 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>7</TD><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP>1</TD><TD ALIGN=center NOWRAP><B>4</B></TD><TD ALIGN=center NOWRAP>20</TD><TD ALIGN=center NOWRAP>31</TD><TD ALIGN=center NOWRAP>57</TD><TD ALIGN=center NOWRAP>4 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>8</TD><TD ALIGN=center NOWRAP>10</TD><TD ALIGN=center NOWRAP>2</TD><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP><B>10</B></TD><TD ALIGN=center NOWRAP>31</TD><TD ALIGN=center NOWRAP>57</TD><TD ALIGN=center NOWRAP>4 </TD></TR>
+<TR><TD ALIGN=center NOWRAP>9</TD><TD ALIGN=center NOWRAP>28</TD><TD ALIGN=center NOWRAP>3</TD><TD ALIGN=center NOWRAP>4</TD><TD ALIGN=center NOWRAP>10</TD><TD ALIGN=center NOWRAP><B>28</B></TD><TD ALIGN=center NOWRAP>57</TD><TD ALIGN=center NOWRAP>4 </TD></TR>
+</TABLE></TD></TR>
+</TABLE>
+</DIV><!--TOC section Question 4. 6 points.-->
+<H2 CLASS="section"><!--SEC ANCHOR -->Question 4. 6 points.</H2><!--SEC END --><P> Cherchez <I>l</I> par dichotomie dans le tableau <I>V</I>.
+Il faut trouver dans <I>V</I> l&#X2019;indice <I>l</I> (<I>l</I> est une longueur entre 1 et <I>L</I>) le plus grand tel que <I>V</I><SUB><I>l</I></SUB> soit inférieure ou égale à <I>E</I><SUB><I>i</I></SUB>.
+Or le tableau <I>V</I><SUB>1</SUB>, &#X2026; <I>V</I><SUB><I>L</I></SUB> est toujours trié par ordre croissant, comme sur l&#X2019;exemple précédent :
+<I>V</I><SUB>1</SUB>&#X2264; &#X2026; &#X2264; <I>V</I><SUB><I>L</I></SUB>.
+Vérifiez que toutes les méthodes rendent les mêmes tableaux <I>LT</I>, pour des <I>E</I> identiques, et que la seconde méthode avec une recherche dichotomique est 
+nettement plus rapide pour des tailles de cent mille ou un million d&#X2019;éléments dans <I>E</I>.</P><!--TOC section Bonus, 2 points.-->
+<H2 CLASS="section"><!--SEC ANCHOR -->Bonus, 2 points.</H2><!--SEC END --><P> (pour rattraper des points sur votre partiel, si vous avez les 20 points). La méthode d&#X2019;affichage est en <I>O</I>(<I>n</I>), et 
+on préférerait une méthode qui prenne un temps proportionnel à la longueur de la séquence. 
+Dans la méthode naïve, stockez dans un tableau <I>P</I><SUB><I>i</I></SUB> l&#X2019;indice <I>k</I> de l&#X2019;élément <I>E</I><SUB><I>k</I></SUB> précédant
+immédiatement <I>E</I><SUB><I>i</I></SUB> dans la plus longue séquence qui utilise <I>E</I><SUB><I>i</I></SUB> (-1 s&#X2019;il n&#X2019;y en a pas de tel <I>k</I>). 
+Ecrivez une méthode d&#X2019;affichage (en ordre inverse, si c&#X2019;est le plus simple) qui utilise <I>P</I>. Remarque : <I>P</I><SUB><I>i</I></SUB> est similaire au prédécesseur 
+du sommet <I>i</I>
+dans les méthodes de plus courts chemins.</P><!--TOC section Bonus, 2 points.-->
+<H2 CLASS="section"><!--SEC ANCHOR -->Bonus, 2 points.</H2><!--SEC END --><P> Faites de même dans la méthode rapide avec recherche dichotomique.</P><!--CUT END -->
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE=2><BLOCKQUOTE CLASS="quote"><EM>Ce document a été traduit de L<sup>A</sup>T<sub>E</sub>X par </EM><A HREF="http://hevea.inria.fr"><EM>H</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>V</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>A</EM></A></BLOCKQUOTE></BODY>
+</HTML>
